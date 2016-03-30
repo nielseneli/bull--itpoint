@@ -5,14 +5,10 @@
 ###Basic project proposal
 A presentation software that creates a presentation/slide deck in real time according to audio commands and possibly other input interpreted from the speaker.
 ###Project Architecture
--**Input**
-(Voice, possibly hardware or camera)
--**Parsing**
-(BlueMind STT probably, OpenCV, etc)
--**Model**
-(MVP a hardcoded switchblock on input)
--**Output**
-(Pygame, maybe a markup language generator)
+-**Input** (Voice, possibly hardware or camera)
+-**Parsing** (BlueMind STT probably, OpenCV, etc)
+-**Model** (MVP a hardcoded switchblock on input)
+-**Output** (Pygame, maybe a markup language generator)
 
 ##Key questions
 ###Basic pitfalls of UX
@@ -29,8 +25,8 @@ Using the google slide presentation.
 ###Demo?
 ####*5 Min*
 Desc. of how demo run
-###Have Them run through 2 trials with different people
+###Have them run through 2 trials with different people
 ####*5 Min per, 10 min total*
 Including intro
 ###Recap from all groups, collect sticky notes for later processing?
-####(*5 Min)
+####*5 Min*
