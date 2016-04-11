@@ -13,8 +13,10 @@ class Slide(object):
     def update(self):
         """ Updates whatever visual we have so you can see everything currently
         on a slide.
+        Should be overridden by more specific slides' update method for their 
+        own formatting. Currently just prints to terminal if not overridden.
         """
-        pass
+        print 'This slide has no content.'
 
 
 class Slide_List(Slide):
@@ -28,18 +30,21 @@ class Slide_List(Slide):
         else:
             self.items = items
 
+    def update(self):
+    	"""Formats the list of items with Flask so it looks like a list and 
+    	outputs to webpage.
+        """
+        # TODO: Implement with Flask
+        # For now, this prints to terminal
+    	for i in len(self.items):
+            print str(i + 1) + '. ' + self.items[i]
+
     def make_list(self, items):
         """ Takes in list of items.
         """
         self.items = items
-
-    def format_list(self):
-        """ Formats the list of items with Flask so it looks like a list.
-        """
-        # TODO: Implement with Flask
-        # For now, this prints to terminal
-        for i in len(self.items):
-            print str(i + 1) + '. ' + self.items[i]
+        self.format_list()
+        self.update()
 
     def add_item(self, new_item):
         """ Adds a new item to self.items.
@@ -56,28 +61,24 @@ class Slide_Title(Slide):
         self.title = title
         self.subtitle = subtitle
 
+
+    def update(self):
+        """ Formats the title text with Flask so it looks like a title and 
+        outputs to webpage.
+        """
+        # TODO: Implement with Flask
+        # For now, this prints to terminal.
+        print self.title
+        print self.subtitle
+
     def make_title(self, text):
         """ Takes in title text.
             Modifies self.title to match input text.
         """
         self.title = text
 
-    def format_title(self):
-        """ Formats the title text with Flask so it looks like a title.
-        """
-        # TODO: Implement with Flask
-        # For now, this prints to terminal.
-        print self.title
-
     def make_subtitle(self, text):
         """ Takes in subtitle text.
             Modifies self.subtitle to match input text.
         """
         self.subtitle = text
-
-    def format_subtitle(self):
-        """ Formats the subtitle text with Flask so it looks like a subtitle.
-        """
-        # TODO: Implement with Flask
-        # For now, this prints to terminal.
-        print self.subtitle
