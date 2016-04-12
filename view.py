@@ -10,6 +10,10 @@ def test_me():
 	test_slide.make_subtitle('This is a subtitle')
 	return test_slide.update()
 
+    #test_slide2 = Slide_List(title='This is a listy title', items=['hi','howdy'])
+    #test_slide2.add_item('hey')
+    #return test_slide2.update()  
+
 
 class Slide(object):
     """ Creates a Slide object. Has child classes Slide_List and Slide_Title.
@@ -42,22 +46,16 @@ class Slide_List(Slide):
     	"""Formats the list of items with Flask so it looks like a list and
         outputs to webpage.
         """
-        # TODO: Implement with Flask
-        # For now, this prints to terminal
-
-    	for i in len(self.items):
-            return str(i + 1) + '. ' + self.items[i]
+        return render_template('slide_list_template.html',title=self.title, items=self.items)
 
 
     def make_list(self, items):
-        """ Takes in list of items.
+        """ Takes in list of items and sets it as items attribute.
         """
         self.items = items
-        self.format_list()
-        self.update()
 
     def add_item(self, new_item):
-        """ Adds a new item to self.items, whether items is populated or not.
+        """ Adds a new item to self.items.
         """
         try:
         	self.items.append(new_item)
