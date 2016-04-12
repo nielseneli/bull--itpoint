@@ -21,7 +21,7 @@ class Slide(object):
     def update(self):
         """ Updates whatever visual we have so you can see everything currently
         on a slide.
-        Should be overridden by more specific slides' update method for their 
+        Should be overridden by more specific slides' update method for their
         own formatting. Currently just prints to terminal if not overridden.
         """
         return 'This slide has no content.'
@@ -39,13 +39,15 @@ class Slide_List(Slide):
             self.items = items
 
     def update(self):
-    	"""Formats the list of items with Flask so it looks like a list and 
-    	outputs to webpage.
+    	"""Formats the list of items with Flask so it looks like a list and
+        outputs to webpage.
         """
         # TODO: Implement with Flask
         # For now, this prints to terminal
+
     	for i in len(self.items):
             return str(i + 1) + '. ' + self.items[i]
+
 
     def make_list(self, items):
         """ Takes in list of items.
@@ -73,7 +75,7 @@ class Slide_Title(Slide):
         self.subtitle = subtitle
 
     def update(self):
-        """ Formats the title text with Flask so it looks like a title and 
+        """ Formats the title text with Flask so it looks like a title and
         outputs to webpage.
         """
         # TODO: Implement with Flask
