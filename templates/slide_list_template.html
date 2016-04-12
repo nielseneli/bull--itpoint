@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>slaides - List Slide</title>
+</head>
+
+{% if title %}
+  <h1><center>{{ title }}</center></h1>
+{% else %}
+  <h1>Hello World!</h1>
+{% endif %}
+
+<body>
+    <ul id="listitems">
+    {% for item in items %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+
+</body>
+</html>
