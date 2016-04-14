@@ -1,14 +1,17 @@
 # slAIdes
 
 ## What It Does
-slAIdes creates a slide deck, in real time, while you present, encouraging more flexible presentation styles and more procrastination.
-########################### ADD MORE HERE PLS
+slAIdes is flexible presentation software. It creates a slide deck, in real time, while you present, encouraging more flexible presentation styles and more procrastination.
+
+### Basic Code Structure:
+slAIdes is written in Model-View-Controller form.
+
 
 ## How to Use
 Let's get started!
 
 ### How to Download
-I don't know this yet.
+Press the "Download .zip" or "Download .tar.gz" button in the header to download either a .zip  or a tar.gz of the software.
 
 ### How to Install
 I don't know this either.
@@ -23,11 +26,17 @@ I'm not sure if any of us know this, but we could figure it out.
 #### Example code
 There must be some example code/audio files/whatever we can also include here.
 
-### Acceptable Forms of Input
+## Code Structure
+slAIdes is written in Model-View-Controller form.
 
+### Model
+The model is written in `framework.py`. 
 
-### Expected Forms of Output
+### View
+The view portion is written in `view.py`.
 
+### Controller
+The controller portion is written by `controller.py`.
 
 ## Credits
 
