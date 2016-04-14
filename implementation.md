@@ -1,7 +1,7 @@
 ---
 title: Implementation Details
 layout: template
-filename: implementation.md
+filename: implementation
 ---
 
 # How Did We Implement slAIdes?

@@ -1,7 +1,7 @@
 ---
 title: The Big Idea
 layout: template
-filename: bigidea.md
+filename: bigidea
 ---
 
 # Why Did We slAIdes?

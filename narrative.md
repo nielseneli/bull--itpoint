@@ -1,7 +1,7 @@
 ---
 title: Project Evolution
 layout: template
-filename: narrative.md
+filename: narrative
 ---
 
 # What's our Story?
