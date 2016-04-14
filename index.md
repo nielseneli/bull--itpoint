@@ -41,6 +41,9 @@ There must be some example code/audio files/whatever we can also include here.
 ##### Team Members:
 
 [Jared Briskman](https://github.com/jaredbriskman "Jared's Github profile")
+
 [Margaret Crawford](https://github.com/Margaretmcrawf "Margo's Github profile")
+
 [Lauren Gulland](https://github.com/laurengulland "Lauren's Github profile")
+
 [Louise Nielsen](https://github.com/nielsenlouise "Louise's Github profile")
