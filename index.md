@@ -1,5 +1,5 @@
 ---
-title: slAIdes: Home
+title: README file
 layout: template
 filename: index.md
 ---
@@ -39,7 +39,7 @@ python controller.py
 ```
 
 ### How to Run
-I'm not sure if any of us know this, but we could figure it out.
+Run the `controller.py` file to initialize the program.
 
 
 ## Credits
