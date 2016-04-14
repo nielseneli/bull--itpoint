@@ -1,5 +1,5 @@
 ---
-title: README file
+title: Homepage
 layout: template
 filename: index.md
 ---
@@ -25,22 +25,22 @@ I don't know this either.
 
 #### Dependencies
 Run:
+
 ```
 $ pip install twisted autobahn requests pyOpenSSL flask
 ```
+
 You may also need to run:
+
 ```
 $ apt-get install build-essential python-dev
 ```
+
 ### How to Run
 So start, simply run 'controller.py', eg:
 ```
 python controller.py
 ```
-
-### How to Run
-Run the `controller.py` file to initialize the program.
-
 
 ## Credits
 
