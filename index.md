@@ -6,6 +6,9 @@ filename: index.md
 
 # slAIdes
 
+
+##IMPORTANT: SlAIdes is not in a working state currently. Development is active, and working builds will be tagged.
+
 ## What It Does
 slAIdes creates a slide deck, in real time, while you present, encouraging more flexible presentation styles and more procrastination.
 
@@ -21,7 +24,7 @@ Let's get started!
 Press the "Download .zip" or "Download .tar.gz" button in the header to download either a .zip  or a tar.gz of the software.
 
 ### How to Install
-I don't know this either.
+Still figuring this out!
 
 #### Dependencies
 Run:
@@ -37,7 +40,8 @@ $ apt-get install build-essential python-dev
 ```
 
 ### How to Run
-So start, simply run 'controller.py', eg:
+So start, simply run `controller.py`, eg:
+
 ```
 python controller.py
 ```
