@@ -6,12 +6,18 @@ import framework
 import view
 import getch
 
+#TODO: Heartbeat threading, bluemix integration, better structure.
+
 keystrokes = Queue()
 strings = Queue()
 
 def main():
-    #TODO: Bluemix and getch onto the queues.
-
+    key = ord(getch())
+    if key == 27: #ESC
+        keystrokes.put("esc")
+    elif key == 13: #Enter
+        #TODO: Start a bluemix thread? Have to sort bluemix out first.
+        #Probably a worker daemon though.
 if __name__ == '__main__':
     #Threading targets
     def _frameworkstart():

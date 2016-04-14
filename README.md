@@ -23,7 +23,7 @@ I don't know this either.
 #### Dependencies
 Run:
 ```
-$ pip install twisted autobahn requests pyOpenSSL flask
+$ pip install twisted autobahn requests pyOpenSSL flask getch
 ```
 You may also need to run:
 ```
