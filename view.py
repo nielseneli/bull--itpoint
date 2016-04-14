@@ -10,10 +10,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def test_me():
+    '''tests this script by creating a slide and updating it. 
+    Only for debugging use within this file.
+    '''
     test_slide = Slide_Title(title='This is a title')
     test_slide.make_subtitle('This is a subtitle')
     return test_slide.update()
-
+#   Uncomment to test List Slides instead
 #   test_slide2 = Slide_List(title='This is a listy title', items=['hi','howdy'])
 #   test_slide2.add_item('hey')
 #   return test_slide2.update()
@@ -30,25 +33,29 @@ class Slide(object):
         """ Updates whatever visual we have so you can see everything currently
         on a slide.
         Should be overridden by more specific slides' update method for their
-        own formatting. Currently just prints to terminal if not overridden.
+        own formatting. Currently just prints useless string to webpage if not overridden.
         """
-        return 'This slide has no content.'
+        #If this shows, you didn't create an actual specified slide. Go make a specific slide.
+        return 'This slide has no content.' 
 
 
 class Slide_List(Slide):
-    """ Inherits from Slide class. Can make a list of items.
+    """ Inherits from Slide class. Can make a title and a list of items.
     """
 
     def __init__(self, title='', items=None):
+        '''Initially assigns optional title value and list of items to the object's attributes.
+        May cause errors if given 'items' is not a list or 'title' is not a string.
+        '''
         self.title = title
         if items is None:
-            self.items = []
+            self.items = [] #sets items to an empty list if none are preset
         else:
-            self.items = items
+            self.items = items #sets items if preset to that list. May cause errors if items is not a list.
 
     def update(self):
     	"""Formats the list of items with Flask so it looks like a list and
-        outputs to webpage.
+        outputs to webpage. Calls separate file: slide_list_template.html
         """
         return render_template('slide_list_template.html', title=self.title, items=self.items)
 
@@ -58,12 +65,9 @@ class Slide_List(Slide):
         self.items = items
 
     def add_item(self, new_item):
-        """ Adds a new item to self.items.
+        """ Takes in new_items and adds it to self.items.
         """
-        try:
-            self.items.append(new_item)
-        except NameError:
-            self.items = [new_item]
+        self.items.append(new_item)
 
 
 class Slide_Title(Slide):
@@ -72,15 +76,16 @@ class Slide_Title(Slide):
     """
 
     def __init__(self, title='', subtitle=''):
+        '''Initially assigns optional title and subtitle values to the object's attributes.
+        May cause errors if given 'items' is not a list or 'title' is not a string.
+        '''
         self.title = title
         self.subtitle = subtitle
 
     def update(self):
         """ Formats the title text with Flask so it looks like a title and
-        outputs to webpage.
+        outputs to webpage. Calls separate file: slide_title_tempmlate.html
         """
-        # TODO: Implement with Flask
-        # For now, this prints to terminal.
         return render_template('slide_title_template.html', title=self.title, subtitle=self.subtitle)
 
     def make_title(self, text):
@@ -96,6 +101,6 @@ class Slide_Title(Slide):
         self.subtitle = text
 
 if __name__ == '__main__':
-    app.run(debug=True)
     # enables debugging mode, so you don't have to restart
     # the server each time you change your code
+    app.run(debug=True)
