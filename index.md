@@ -4,6 +4,7 @@ layout: template
 filename: index.md
 ---
 # slAIdes
+
 ## Flexible Presentation Software
 
 ### What It Does
@@ -36,7 +37,9 @@ There must be some example code/audio files/whatever we can also include here.
 
 
 ### Credits
+
 ##### Team Members:
+
 [Jared Briskman](https://github.com/jaredbriskman "Jared's Github profile")
 [Margaret Crawford](https://github.com/Margaretmcrawf "Margo's Github profile")
 [Lauren Gulland](https://github.com/laurengulland "Lauren's Github profile")
