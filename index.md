@@ -1,5 +1,5 @@
 ---
-title: README file
+title: slAIdes: Home
 layout: template
 filename: index.md
 ---
@@ -7,31 +7,38 @@ filename: index.md
 
 ## What It Does
 slAIdes creates a slide deck, in real time, while you present, encouraging more flexible presentation styles and more procrastination.
-########################### ADD MORE HERE PLS
+
+### Basic Code Structure:
+slAIdes is written in Model-View-Controller form, with each component in a discrete file.
+Each of these live on their own thread, with the controller initializing everything.
+Data is passed between the controller and the framework on two queues, and the framework passes the view display objects.
 
 ## How to Use
 Let's get started!
 
 ### How to Download
-I don't know this yet.
+Press the "Download .zip" or "Download .tar.gz" button in the header to download either a .zip  or a tar.gz of the software.
 
 ### How to Install
 I don't know this either.
 
 #### Dependencies
-I really don't know this, but I know there are a hell of a lot of things here.
-
+Run:
+```
+$ pip install twisted autobahn requests pyOpenSSL flask
+```
+You may also need to run:
+```
+$ apt-get install build-essential python-dev
+```
+### How to Run
+So start, simply run 'controller.py', eg:
+```
+python controller.py
+```
 
 ### How to Run
 I'm not sure if any of us know this, but we could figure it out.
-
-#### Example code
-There must be some example code/audio files/whatever we can also include here.
-
-### Acceptable Forms of Input
-
-
-### Expected Forms of Output
 
 
 ## Credits
