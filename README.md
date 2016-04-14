@@ -1,10 +1,14 @@
 # slAIdes
 
+##IMPORTANT: SlAIdes is not in a working state currently. Development is active, and working builds will be tagged.
+
 ## What It Does
 slAIdes is flexible presentation software. It creates a slide deck, in real time, while you present, encouraging more flexible presentation styles and more procrastination.
 
 ### Basic Code Structure:
-slAIdes is written in Model-View-Controller form.
+slAIdes is written in Model-View-Controller form, with each component in a discrete file.
+Each of these live on their own thread, with the controller initializing everything.
+Data is passed between the controller and the framework on two queues, and the framework passes the view display objects.
 
 
 ## How to Use
@@ -17,20 +21,28 @@ Press the "Download .zip" or "Download .tar.gz" button in the header to download
 I don't know this either.
 
 #### Dependencies
-I really don't know this, but I know there are a hell of a lot of things here.
-
-
+Run:
+```
+$ pip install twisted autobahn requests pyOpenSSL flask
+```
+You may also need to run:
+```
+$ apt-get install build-essential python-dev
+```
 ### How to Run
-I'm not sure if any of us know this, but we could figure it out.
+So start, simply run 'controller.py', eg:
+```
+python controller.py
+```
 
 #### Example code
-There must be some example code/audio files/whatever we can also include here.
+Examples inbound soon.
 
 ## Code Structure
 slAIdes is written in Model-View-Controller form.
 
 ### Model
-The model is written in `framework.py`. 
+The model is written in `framework.py`.
 
 ### View
 The view portion is written in `view.py`.

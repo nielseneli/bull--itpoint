@@ -8,7 +8,7 @@ import time
 import sys
 
 # loop continues checking for new strings until user keystrokes
-while True:
+def main():
     for text in strings.get()
 #       the following section is for creating a new slide
         if 'title slide' in text:
@@ -30,5 +30,3 @@ while True:
     for key in keystrokes.get():
         if keystrokes.pop() == 'esc':
             sys.quit
-
-    time.sleep(.01)  # allow the other threads to work
