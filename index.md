@@ -7,7 +7,7 @@ filename: index.md
 # slAIdes
 
 
-##IMPORTANT: SlAIdes is not in a working state currently. Development is active, and working builds will be tagged.
+## IMPORTANT: SlAIdes is not in a working state currently. Development is active, and working builds will be tagged.
 
 ## What It Does
 slAIdes creates a slide deck, in real time, while you present, encouraging more flexible presentation styles and more procrastination.
