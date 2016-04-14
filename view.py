@@ -1,6 +1,18 @@
 """ Contains the View part of the project. Has a Slide class, as well as
 classes that inherit from that: Slide_List, Slide_Title, etc.
 """
+from flask import Flask
+from flask import render_template
+app = Flask(__name__)
+@app.route('/')
+def test_me():
+	test_slide = Slide_Title(title='This is a title')
+	test_slide.make_subtitle('This is a subtitle')
+	return test_slide.update()
+
+    #test_slide2 = Slide_List(title='This is a listy title', items=['hi','howdy'])
+    #test_slide2.add_item('hey')
+    #return test_slide2.update()  
 
 
 class Slide(object):
@@ -16,7 +28,7 @@ class Slide(object):
         Should be overridden by more specific slides' update method for their
         own formatting. Currently just prints to terminal if not overridden.
         """
-        print 'This slide has no content.'
+        return 'This slide has no content.'
 
 
 class Slide_List(Slide):
@@ -34,22 +46,21 @@ class Slide_List(Slide):
     	"""Formats the list of items with Flask so it looks like a list and
         outputs to webpage.
         """
-        # TODO: Implement with Flask
-        # For now, this prints to terminal
-        for i in len(self.items):
-            print str(i + 1) + '. ' + self.items[i]
+        return render_template('slide_list_template.html',title=self.title, items=self.items)
+
 
     def make_list(self, items):
-        """ Takes in list of items.
+        """ Takes in list of items and sets it as items attribute.
         """
         self.items = items
-        self.format_list()
-        self.update()
 
     def add_item(self, new_item):
         """ Adds a new item to self.items.
         """
-        self.items.append(new_item)
+        try:
+        	self.items.append(new_item)
+        except NameError:
+        	self.items = [new_item]
 
 
 class Slide_Title(Slide):
@@ -67,8 +78,7 @@ class Slide_Title(Slide):
         """
         # TODO: Implement with Flask
         # For now, this prints to terminal.
-        print self.title
-        print self.subtitle
+        return render_template('slide_title_template.html',title=self.title, subtitle=self.subtitle)
 
     def make_title(self, text):
         """ Takes in title text.
@@ -81,3 +91,8 @@ class Slide_Title(Slide):
             Modifies self.subtitle to match input text.
         """
         self.subtitle = text
+
+if __name__ == '__main__':
+	app.run(debug = True)
+	#enables debugging mode, so you don't have to restart 
+	#the server each time you change your code
