@@ -16,7 +16,8 @@ def main():
         elif 'list slide' in text:
             slide = view.Slide_List()  # make new list slide
 
-#   TODO: think about the optimal way to do this. Like maybe a dictionary
+#	This section calls slide methods when certain phrases are found in the string
+#   TODO: think about the optimal way to do this. Like maybe a dictionary with functions
 #   instead of a bunch of if statements because eventually there will be a lot
 #   of things here and it won't be very readable
 
@@ -27,6 +28,7 @@ def main():
             bullet = text.split('bullet', 1)[1]
             slide.add_item(bullet)
 
+#if the escape key is pressed, that will be sent to the keystroke queue which will quit the program.
     for key in keystrokes.get():
         if keystrokes.pop() == 'esc':
             sys.quit
