@@ -5,8 +5,6 @@ filename: index.md
 ---
 # slAIdes
 
-#### Flexible Presentation Software
-
 ## What It Does
 slAIdes creates a slide deck, in real time, while you present, encouraging more flexible presentation styles and more procrastination.
 ########################### ADD MORE HERE PLS
