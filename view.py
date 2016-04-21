@@ -1,37 +1,41 @@
 """ Contains the View part of the project. Has a Slide class, as well as
-classes that inherit from that: Slide_List, Slide_Title, etc.
+    classes that inherit from that: Slide_List, Slide_Title, etcself.
+    This branch uses HackerSlides instead of Flask to make it look like an
+    actual presentation.
 """
-from flask import Flask
-from flask import render_template
 
 
-app = Flask(__name__)
+def end_slide(filename):
+    filename.write('\n\n---\n\n')
 
 
-@app.route('/')
-def test_me():
-	'''tests this script by creating a slide and updating it. 
-	Only for debugging use within this file.
-	'''
-#    test_slide = Slide_Title(title='This is a title')
-#    test_slide.make_subtitle('This is a subtitle')
-#    return test_slide.update()
-#    Uncomment to test List Slides instead
-	test_slide2 = Slide_List(title='This is a listy title', items=['hi','howdy'])
-	test_slide2.add_item('hey')
-	return test_slide2.update()
+def add_title_slide(filename, title='', subtitle=''):
+    filename.write('# ' + title + '\n\n' + '### ' + subtitle)
+    end_slide(filename)
+
+
+def add_list_slide(filename, title='', items=None):
+    if items is None:
+        items = []
+    filename.write('## ' + title + '\n')
+    for item in items:
+        filename.write('\n- ' + item)
+    end_slide(filename)
+
 
 class SlideDeck(object):
-	def __init__(self):
-		self.deck = []
+    """ One SlideDeck object is a github-flavored markdown document.
+    """
+    def __init__(self):
+        self.deck = []
 
-	def addtoDeck(slide):
-		self.deck.append(slide)
+    def addtoDeck(slide):
+        self.deck.append(slide)
 
 
 class Slide(object):
 	""" Creates a Slide object. Has child classes Slide_List and Slide_Title.
-	Theoretically, should never initialize this class -- always initialize a 
+	Theoretically, should never initialize this class -- always initialize a
 	child class that is more specific for what kind of slide you need.
 	"""
 
@@ -45,7 +49,7 @@ class Slide(object):
 		own formatting. Currently just prints useless string to webpage if not overridden.
 		"""
 		#If this shows, you didn't create an actual specified slide. Go make a specific slide.
-		return 'This slide has no content.' 
+		return 'This slide has no content.'
 
 
 class Slide_List(Slide):
@@ -113,4 +117,9 @@ class Slide_Title(Slide):
 if __name__ == '__main__':
 	# enables debugging mode, so you don't have to restart
 	# the server each time you change your code
-	app.run(debug=True)
+	# app.run(debug=True)
+
+    file_name = open('test.md', 'w')
+    add_title_slide(file_name, 'title', 'subtitle')
+    add_list_slide(file_name, 'listy slide', ['look', 'i', 'made', 'a', 'list'])
+    file_name.close
