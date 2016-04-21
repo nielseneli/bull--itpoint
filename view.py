@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def test_me():
-	'''tests this script by creating a slide and updating it. 
+	'''tests this script by creating a slide and updating it.
 	Only for debugging use within this file.
 	'''
 #    test_slide = Slide_Title(title='This is a title')
@@ -31,7 +31,7 @@ class SlideDeck(object):
 
 class Slide(object):
 	""" Creates a Slide object. Has child classes Slide_List and Slide_Title.
-	Theoretically, should never initialize this class -- always initialize a 
+	Theoretically, should never initialize this class -- always initialize a
 	child class that is more specific for what kind of slide you need.
 	"""
 
@@ -45,22 +45,23 @@ class Slide(object):
 		own formatting. Currently just prints useless string to webpage if not overridden.
 		"""
 		#If this shows, you didn't create an actual specified slide. Go make a specific slide.
-		return 'This slide has no content.' 
+		return 'This slide has no content.'
 
 
 class Slide_List(Slide):
-	""" Inherits from Slide class. Can make a title and a list of items.
-	"""
+<<<<<<< HEAD
+    """ Inherits from Slide class. Can make a title and a list of items.
+    """
 
-	def __init__(self, title='', items=None):
-		'''Initially assigns optional title value and list of items to the object's attributes.
-		May cause errors if given 'items' is not a list or 'title' is not a string.
-		'''
-		self.title = title
-		if items is None:
-			self.items = [] #sets items to an empty list if none are preset
-		else:
-			self.items = items #sets items if preset to that list. May cause errors if items is not a list.
+    def __init__(self, title='', items=None, image_url = None):
+        '''Initially assigns optional title value and list of items to the object's attributes.
+        May cause errors if given 'items' is not a list or 'title' is not a string.
+        '''
+        self.title = title
+        if items is None:
+            self.items = [] #sets items to an empty list if none are preset
+        else:
+            self.items = items #sets items if preset to that list. May cause errors if items is not a list.
 
 	def update(self):
 		"""Formats the list of items with Flask so it looks like a list and
@@ -69,15 +70,18 @@ class Slide_List(Slide):
 		self.addtoDeck()
 		return render_template('slide_list_template.html', title=self.title, items=self.items)
 
-	def make_list(self, items):
-		""" Takes in list of items and sets it as items attribute.
-		"""
-		self.items = items
+    def make_list(self, items):
+        """ Takes in list of items and sets it as items attribute.
+        """
+        self.items = items
 
-	def add_item(self, new_item):
-		""" Takes in new_items and adds it to self.items.
-		"""
-		self.items.append(new_item)
+    def add_item(self, new_item):
+        """ Takes in new_items and adds it to self.items.
+        """
+        self.items.append(new_item)
+    def add_image(self, image_url):
+        """ Adds an image to the slide"""
+        self.image_url = image_url
 
 
 class Slide_Title(Slide):
