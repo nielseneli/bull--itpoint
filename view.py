@@ -53,7 +53,7 @@ class Slide_List(Slide):
     """ Inherits from Slide class. Can make a title and a list of items.
     """
 
-    def __init__(self, title='', items=None, image_url = None):
+    def __init__(self, title=None, items=None, image_url = None):
         '''Initially assigns optional title value and list of items to the object's attributes.
         May cause errors if given 'items' is not a list or 'title' is not a string.
         '''
@@ -95,7 +95,7 @@ class Slide_Title(Slide):
 	slide.
 	"""
 
-	def __init__(self, title='', subtitle=''):
+	def __init__(self, title=None, subtitle=None):
 		'''Initially assigns optional title and subtitle values to the object's attributes.
 		'''
 		self.title = title
