@@ -13,15 +13,16 @@ def test_me():
 	'''tests this script by creating a slide and updating it.
 	Only for debugging use within this file.
 	'''
-#    test_slide = Slide_Title(title='This is a title')
-#    test_slide.make_subtitle('This is a subtitle')
-#    return test_slide.update()
-#    Uncomment to test List Slides instead
-	test_slide2 = Slide_List(title='This is a listy title', items=['hi','howdy'])
-	test_slide2.add_item('hey')
-	return test_slide2.update()
+	test_slide = Slide_Title(title='This is a title')
+	test_slide.make_subtitle('This is a subtitle')
+	return test_slide.update()
+    # Uncomment to test List Slides instead
+	# test_slide2 = Slide_List(title='This is a listy title', items=['hi','howdy'])
+	# test_slide2.add_item('hey')
+	# return test_slide2.update()
 
 class SlideDeck(object):
+	'''currently not in use. still being developed.'''
 	def __init__(self):
 		self.deck = []
 
@@ -49,7 +50,6 @@ class Slide(object):
 
 
 class Slide_List(Slide):
-<<<<<<< HEAD
     """ Inherits from Slide class. Can make a title and a list of items.
     """
 
@@ -67,7 +67,7 @@ class Slide_List(Slide):
 		"""Formats the list of items with Flask so it looks like a list and
 		outputs to webpage. Calls separate file: slide_list_template.html
 		"""
-		self.addtoDeck()
+		# self.addtoDeck()
 		return render_template('slide_list_template.html', title=self.title, items=self.items)
 
     def make_list(self, items):
@@ -99,7 +99,7 @@ class Slide_Title(Slide):
 		""" Formats the title text with Flask so it looks like a title and
 		outputs to webpage. Calls separate file: slide_title_tempmlate.html
 		"""
-		self.addtoDeck()
+		# self.addtoDeck()
 		return render_template('slide_title_template.html', title=self.title, subtitle=self.subtitle)
 
 	def make_title(self, text):
@@ -118,3 +118,4 @@ if __name__ == '__main__':
 	# enables debugging mode, so you don't have to restart
 	# the server each time you change your code
 	app.run(debug=True)
+	test_me()
