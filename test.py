@@ -4,6 +4,7 @@ import os
 import pyaudio
 import wave
 
+
 with open('credentials.json') as credential_file:
     credentials = json.load(credential_file)['credentials']
 
@@ -31,7 +32,7 @@ def record():
     CHANNELS = 2
     RATE = 44100
     CHUNK = 1024
-    RECORD_SECONDS = 5
+    RECORD_SECONDS = 1
     WAVE_OUTPUT_FILENAME = "recording.wav"
 
     audio = pyaudio.PyAudio()
@@ -41,10 +42,13 @@ def record():
                     frames_per_buffer=CHUNK)
     print "recording..."
     frames = []
-    for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
-        data = stream.read(CHUNK)
-        frames.append(data)
-    print "finished recording"
+    try:
+        while True:
+            # for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
+            data = stream.read(CHUNK)
+            frames.append(data)
+    except KeyboardInterrupt:
+        print "finished recording"
 
     # stop Recording
     stream.stop_stream()
