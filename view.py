@@ -8,13 +8,13 @@ from flask import render_template
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def test_me():
 	'''tests this script by creating a slide and updating it.
 	Only for debugging use within this file.
 	'''
 	test_slide = Slide_Title(title='This is a title')
-	test_slide.make_subtitle('This is a subtitle')
+	test_slide.make_subtitle('This is an even newer subtitle')
 	return test_slide.update()
     # Uncomment to test List Slides instead
 	# test_slide2 = Slide_List(title='This is a listy title', items=['hi','howdy'])
