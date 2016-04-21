@@ -1,35 +1,11 @@
-from Queue import Queue
-import threading
-from threading import Thread
-import time
-import sys
-import framework
-import view
-import getch
 import json
 import requests
 import os
 import pyaudio
 import wave
 
-#TODO: Heartbeat threading, bluemix integration, better structure.
-
-keystrokes = Queue()
-strings = Queue()
-
 with open('credentials.json') as credential_file:
-    credentials = json.load(credential_file)
-
-def main():
-    """Idles waiting for keystrokes. If key is escape, puts "esc" on keystrokes queue,
-    which will initiate framework raising SystemExit. If key is enter, it should start a bluemix STT worker thread."""
-    key = ord(getch())
-    if key == 27: #ESC
-        keystrokes.put("esc")
-    elif key == 13: #Enter
-        #TODO: Start a bluemix thread? Have to sort bluemix out first.
-        #Probably a worker daemon though.
-        strings.put(bluemix())
+    credentials = json.load(credential_file)['credentials']
 
 def bluemix(audio_input):
     """Should stream data through a bluemix session until enter keyup and
@@ -63,7 +39,7 @@ def record():
     stream = audio.open(format=FORMAT, channels=CHANNELS,
                     rate=RATE, input=True,
                     frames_per_buffer=CHUNK)
-    # print "recording..."
+    print "recording..."
     frames = []
     for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
         data = stream.read(CHUNK)
@@ -82,38 +58,7 @@ def record():
     waveFile.writeframes(b''.join(frames))
     waveFile.close()
 
-if __name__ == '__main__':
-    #Threading targets
-    def _frameworkstart():
-        try:
-        	global _running
-        	while _running:
-        		framework.main()
-                time.sleep(.01)
-        except SystemExit:
-    		_running = False
-
-    def _controllerstart():
-    	global _running
-    	while _running:
-    		main()
-            time.sleep(.01)
-
-    def _viewstart():
-    	global _running
-    	while _running:
-    		view()
-
-    cThread = Thread(target=_controllerstart, name='CONTROLLER')
-    vThread = Thread(target=_viewstart, name='VIEW')
-    fThread = Thread(target=_frameworkstart, name='FRAMEWORK')
-
-
-    #Initialize and join
-    cThread.start()
-    vThread.start()
-    fThread.start()
-
-    cThread.join()
-    vThread.join()
-    fThread.join()
+record()
+filepath = '/home/jwb/Documents/git/slaides/recording.wav'  # path to file
+audio = open(filepath,'rb').read()
+print bluemix(audio)
