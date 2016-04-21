@@ -5,12 +5,19 @@ import time
 import sys
 import framework
 import view
+import bluemix
 import getch
+import json
+import requests
+import os
 
 #TODO: Heartbeat threading, bluemix integration, better structure.
 
 keystrokes = Queue()
 strings = Queue()
+
+with open('credentials.json') as credential_file:
+    credentials = json.load(credential_file)
 
 def main():
     """Idles waiting for keystrokes. If key is escape, puts "esc" on keystrokes queue,
@@ -23,11 +30,24 @@ def main():
         #Probably a worker daemon though.
         strings.put(bluemix())
 
-def bluemix():
+def bluemix(audio_input):
     """Should stream data through a bluemix session until enter keyup and
     recieve results, then return the most probable text as a string"""
-    pass
-    #Bluemix returns a JSON object, with text as an element
+
+    api_method = '/v1/recognize'
+    url = credentials['url']
+    POST_url = url+api_method
+    header={'Content-Type': 'audio/wav'}
+    payload = {'continuous':True, 'profanity_filter': False}
+
+    response = requests.post(POST_url, auth=(credentials['username'], credentials['password']),headers=header,data=audio_input,params=payload)
+
+    # print 'recieved'
+    assert (response.status_code == 200)
+    # print('status_code: {} (reason: {})'.format(response.status_code, response.reason))
+    result = json.loads(response.text)
+    return result['results'][0]['alternatives'][0]['transcript']
+    # print 'done'
 
 if __name__ == '__main__':
     #Threading targets
