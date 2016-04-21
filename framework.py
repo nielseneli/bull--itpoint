@@ -2,12 +2,14 @@
     string input from the speech-to-text, process it and make a slide object.
 """
 import view
-from controller import strings, keystrokes
+#from controller import strings, keystrokes
 import sys
 import requests
 
+strings = ['create title slide', 'the title of this slide is cool shit']
+
 #functions for APIs and things
-def get_image_url('searchterm'):
+def get_image_url(searchterm):
 	API_URL = 'https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q='
 	+ searchterm.replace(' ', '%20')
 	r = requests.get(API_URL)
@@ -15,7 +17,7 @@ def get_image_url('searchterm'):
 
 # loop continues checking for new strings until user keystrokes
 def main():
-    for text in strings.get()
+    for text in strings.get():
 #       the following section is for creating a new slide
         if 'create title slide' in text:
             slide = view.Slide_Title() # make new title slide
