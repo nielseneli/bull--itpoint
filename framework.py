@@ -4,31 +4,41 @@
 import view
 from controller import strings, keystrokes
 import sys
+import requests
+
+#functions for APIs and things
+def get_image_url('searchterm'):
+	API_URL = 'https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q='
+	+ searchterm.replace(' ', '%20')
+	r = requests.get(API_URL)
+	return json.loads(r.text)['responseData']['results']['unescapedUrl'] #the url for the first image
 
 # loop continues checking for new strings until user keystrokes
 def main():
     for text in strings.get()
 #       the following section is for creating a new slide
-        if 'title slide' in text:
+        if 'create title slide' in text:
             slide = view.Slide_Title() # make new title slide
             slide.update()
-        elif 'list slide' in text:
+        elif 'create list slide' in text:
             slide = view.Slide_List()  # make new list slide
             slide.update()
 
 #	This section calls slide methods when certain phrases are found in the string
-#   TODO: think about the optimal way to do this. Like maybe a dictionary with functions
-#   instead of a bunch of if statements because eventually there will be a lot
-#   of things here and it won't be very readable
 
         if 'the title of this slide is' in text:
             title = text.split('the title of this slide is', 1)[1]
             slide.title = title
             slide.update()
-        elif 'bullet' in text:
-            bullet = text.split('bullet', 1)[1]
+        elif 'point' in text:
+            bullet = text.split('point', 1)[1]
             slide.add_item(bullet)
             slide.update()
+        if 'add image of' in text:
+        	searchterm = text.split('add image of')[1]
+        	url = get_image_url(searchterm)
+        	slide.add_image(url)
+        	slide.update()
 
 #if the escape key is pressed, that will be sent to the keystroke queue which will quit the program.
     for key in keystrokes.get():

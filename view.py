@@ -68,6 +68,8 @@ class Slide_List(Slide):
         """ Takes in new_items and adds it to self.items.
         """
         self.items.append(new_item)
+    def add_image(self, image_url):
+        """ Adds an image to the slide"""
 
 
 class Slide_Title(Slide):
