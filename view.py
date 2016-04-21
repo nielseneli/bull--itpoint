@@ -70,6 +70,12 @@ class Slide_List(Slide):
 		# self.addtoDeck()
 		return render_template('slide_list_template.html', title=self.title, items=self.items)
 
+	def make_title(self, text):
+		""" Takes in title text.
+		Modifies self.title to match input text.
+		"""
+		self.title = text
+
     def make_list(self, items):
         """ Takes in list of items and sets it as items attribute.
         """
