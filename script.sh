@@ -1,0 +1,1 @@
+curl -X POST -u "5ed7be24-870f-4599-926b-d39392546b01":"acjgjCvxtdix" -H "content-type: audio/wav" --data-binary @/home/jwb/Documents/git/slaides/Bluemix/recordings/0001.wav "https://stream.watsonplatform.net/speech-to-text/api/v1/recognize" > response.json
