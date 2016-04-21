@@ -22,4 +22,27 @@ Currently, our code is made of three parts.
 
 ## Key questions
 
+#### Thoughts on basic code structure?
+
+See the UML diagram in our [presentation](https://docs.google.com/presentation/d/1DlfqaEcr_wdShOdshvnxHDBXG5xGzTC51VTlze0of84/edit?usp=sharing 'Technical Review 2').
+
+#### Thoughts on current problems?
+
+Current problems include:
+
+- threading and cohesiveness between Model, View, and Controller in real time
+- dynamically loading Flask page (should be obsolete after transition to HackerSlides)
+
+#### Thoughts on HackerSlides?
+
+See [their website](https://sandstorm.io/news/2015-02-17-hacker-slides 'HackerSlides').
+
 ## Agenda for technical review session
+
+You can read look for more detail in our [presentation](https://docs.google.com/presentation/d/1DlfqaEcr_wdShOdshvnxHDBXG5xGzTC51VTlze0of84/edit?usp=sharing 'Technical Review 2').
+
+#### Overview of current project
+
+#### Expansion plans
+
+#### Demo
