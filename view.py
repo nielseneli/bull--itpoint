@@ -31,11 +31,15 @@ def add_list_slide(filename, title='', items=None):
 class SlideDeck(object):
     """ One SlideDeck object is a github-flavored markdown document.
     """
-    def __init__(self):
-        self.deck = []
+    def __init__(self, filename='presentation'):
+        self.filename = filename
+        self.deck = open(filename + '.md', 'w')
 
-    def addtoDeck(slide):
-        self.deck.append(slide)
+    def end(self):
+        self.deck.close
+
+    def add_slide(self, text):
+        self.deck.write(text)
 
 
 class Slide(object):
@@ -124,7 +128,8 @@ if __name__ == '__main__':
 	# the server each time you change your code
 	# app.run(debug=True)
 
-    file_name = open('test.md', 'w')
-    add_title_slide(file_name, 'title', 'subtitle')
-    add_list_slide(file_name, 'listy slide', ['look', 'i', 'made', 'a', 'list'])
-    file_name.close
+    test = SlideDeck('test')
+    test.add_slide('look it might work')
+    # add_title_slide(test, 'title', 'subtitle')
+    # add_list_slide(test, 'listy slide', ['look', 'i', 'made', 'a', 'list'])
+    SlideDeck.end(test)
