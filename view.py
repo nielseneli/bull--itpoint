@@ -3,6 +3,11 @@
     This branch uses HackerSlides instead of Flask to make it look like an
     actual presentation.
 """
+""" things to do to use reveal-md:
+curl -sL https://deb.nodesource.com/setup | sudo -E bash -
+sudo apt-get install -y nodejs
+sudo npm install -g reveal-md
+"""
 
 
 def end_slide(filename):
