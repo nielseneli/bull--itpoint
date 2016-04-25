@@ -1,6 +1,7 @@
 from Queue import Queue
 import threading
 from threading import Thread
+from multiprocessing import Process
 import time
 import sys
 import framework
@@ -12,7 +13,7 @@ import os
 import pyaudio
 import wave
 
-#TODO: Heartbeat threading, bluemix integration, better structure.
+# TODO: Heartbeat threading, bluemix integration, better structure.
 
 keystrokes = Queue()
 strings = Queue()
@@ -20,15 +21,17 @@ strings = Queue()
 with open('credentials.json') as credential_file:
     credentials = json.load(credential_file)
 
+
 def main():
     """Idles waiting for keystrokes. If key is escape, puts "esc" on keystrokes queue,
     which will initiate framework raising SystemExit. If key is enter, it should start a bluemix STT worker thread."""
+
     key = ord(getch())
-    if key == 27: #ESC
+    if key == 27:  # ESC
         keystrokes.put("esc")
-    elif key == 13: #Enter
-        #TODO: Start a bluemix thread? Have to sort bluemix out first.
-        #Probably a worker daemon though.
+    elif key == 13:  # Enter
+        # TODO: Start a bluemix thread? Have to sort bluemix out first.
+        # Probably a worker daemon though.
         strings.put(bluemix())
 
 def bluemix(audio_input):
@@ -83,7 +86,7 @@ def record():
     waveFile.close()
 
 if __name__ == '__main__':
-    #Threading targets
+    #   Threading targets
     def _frameworkstart():
         try:
         	global _running
@@ -104,16 +107,16 @@ if __name__ == '__main__':
     	while _running:
     		view()
 
-    cThread = Thread(target=_controllerstart, name='CONTROLLER')
-    vThread = Thread(target=_viewstart, name='VIEW')
-    fThread = Thread(target=_frameworkstart, name='FRAMEWORK')
+    cProcess = Thread(target=_controllerstart, name='CONTROLLER')
+    vProcess = Thread(target=_viewstart, name='VIEW')
+    fProcess = Thread(target=_frameworkstart, name='FRAMEWORK')
 
 
     #Initialize and join
-    cThread.start()
-    vThread.start()
-    fThread.start()
+    cProcess.start()
+    vProcess.start()
+    fProcess.start()
 
-    cThread.join()
-    vThread.join()
-    fThread.join()
+    cProcess.join()
+    vProcess.join()
+    fProcess.join()
