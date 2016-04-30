@@ -4,29 +4,37 @@ layout: template
 filename: index
 ---
 
-# slAIdes
+# Bull--itPoint
 
 
-## IMPORTANT: SlAIdes is not in a working state currently. Development is active, and working builds will be tagged.
+## IMPORTANT: Bull--itPoint is not in a working state currently. Development is active, and working builds will be tagged.
 
 ## What It Does
-slAIdes creates a slide deck, in real time, while you present, encouraging more flexible presentation styles and more procrastination.
+
+Bull--itPoint creates a slide deck, in real time, while you present, encouraging more flexible presentation styles and more procrastination.
 
 ### Basic Code Structure:
-slAIdes is written in Model-View-Controller form, with each component in a discrete file.
+
+Bull--itPoint is written in Model-View-Controller form, with each component in a discrete file.
+
 Each of these live on their own thread, with the controller initializing everything.
+
 Data is passed between the controller and the framework on two queues, and the framework passes the view display objects.
 
 ## How to Use
+
 Let's get started!
 
 ### How to Download
+
 Press the "Download .zip" or "Download .tar.gz" button in the header to download either a .zip  or a tar.gz of the software.
 
 ### How to Install
+
 Still figuring this out!
 
 #### Dependencies
+
 Run:
 
 ```
@@ -40,6 +48,7 @@ $ apt-get install build-essential python-dev
 ```
 
 ### How to Run
+
 So start, simply run `controller.py`, eg:
 
 ```

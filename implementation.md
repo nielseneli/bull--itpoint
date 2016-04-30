@@ -4,7 +4,7 @@ layout: template
 filename: implementation
 ---
 
-# How Did We Implement slAIdes?
+# How Did We Implement Bull--itPoint?
 
 ## You'll never know, still a work in progress.
 

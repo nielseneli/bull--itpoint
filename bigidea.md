@@ -4,7 +4,7 @@ layout: template
 filename: bigidea
 ---
 
-# Why Did We slAIdes?
+# Why Did We Bull--itPoint?
 
 ## Come back later to see! This page is a work in progress.
 
