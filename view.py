@@ -1,6 +1,6 @@
 """ Contains the View part of the project. Has a Slide class, as well as
-    classes that inherit from that: Slide_List, Slide_Title, etcself.
-    This branch is implementing reveal.js to render a presentation.
+    classes that inherit from that: Slide_List, Slide_Title, etc. This branch
+    is implementing reveal.js to render a presentation.
 """
 
 
@@ -54,73 +54,46 @@ class SlideDeck(object):
             new_file.write(index_contents)
 
     def add_text_to_slide(self, additional_text):
-        # TODO: Implement this.
-        """ Finds the insert cue, goes back two lines, then adds things.
+        """ Finds the insert cue, goes back two lines to account for formatting,
+        then adds things.
         """
-        pass
-
-
-class Slide(object):
-    """ I'm fairly certain this is completely unnecessary.
-    """
-    """ Creates a Slide object. Has child classes Slide_List and Slide_Title.
-    Theoretically, should never initialize this class -- always initialize a
-    child class that is more specific for what kind of slide you need.
-    """
-
-    def __init__(self):
-        pass
-
-    def update(self):
-        """ Updates whatever visual we have so you can see everything currently
-        on a slide.
-        Should be overridden by more specific slides' update method for their
-        own formatting. Currently just prints useless string to webpage if not overridden.
-        """
-        #If this shows, you didn't create an actual specified slide. Go make a specific slide.
-        return 'This slide has no content.'
+        with open('reveal.js-master/index.html', 'r+') as deck:
+            deck_lines = deck.readlines()
+            insert = deck_lines.index('\t\t\t\t<!-- insert here pls -->\n') - 2
+            deck_lines.insert(insert, additional_text)
+            deck.seek(0)
+            deck.write(''.join(deck_lines))
+            deck.truncate()
 
 
 class Slide_List(SlideDeck):
-    # TODO: Finish implementing this with reveal.js.
-    """ Inherits from Slide class. Can make a title and a list of items.
+    """ Inherits from SlideDeck class. Can make a title and a list of items.
+    This can only add a title at the beginning.
     """
 
     def __init__(self, title='', items=None):
-        '''Initially assigns optional title value and list of items to the object's attributes.
-        May cause errors if given 'items' is not a list or 'title' is not a string.
-        '''
+        """ Initially assigns optional title value and list of items to object's
+        attributes and creates a slide with that title and those list items.
+        """
         self.title = title
-        # sets items to an empty list if none are preset
         if items is None:
             self.items = []
-        # sets items if preset to that list
-        # ay cause errors if items is not a list
+            self.add_slide('# ' + self.title + '\n')
         else:
             self.items = items
+            items_str = '\n- '.join(self.items)
+            self.add_slide('# ' + self.title + '\n\n- ' + items_str)
 
-    def update(self):
-        """Formats the list of items with Flask so it looks like a list and
-        outputs to webpage. Calls separate file: slide_list_template.html
+    def update_list(self, new_items):
+        """ Takes in list of one or more items, sets it as items attribute, and
+        updates index.html to present the updated slide.
         """
-        items_str = '\n- '.join(self.items)
-        self.add_slide('# ' + self.title + '\n\n- ' + items_str)
+        self.items.extend(new_items)
+        items_str = '\n- '.join(new_items)
+        self.add_text_to_slide('- ' + items_str + '\n')
 
 
-    def make_list(self, items):
-        """ Takes in list of items and sets it as items attribute.
-        """
-        self.items = items
-        self.update
-
-    def add_item(self, new_item):
-        """ Takes in new_items and adds it to self.items.
-        """
-        self.items.append(new_item)
-        self.update
-
-
-class Slide_Title(Slide):
+class Slide_Title(SlideDeck):
     # TODO: Implement this with reveal.js.
     """ Inherits from Slide class. Can make a title and a subtitle for a title
     slide.
@@ -157,7 +130,5 @@ if __name__ == '__main__':
     # app.run(debug=True)
 
     trying = SlideDeck()
-    trying.add_slide('hey')
     current = Slide_List(title='list slide pls', items=['um', 'sure', 'k','mybe'])
-    current.update()
-    # current.make_list(['hey', 'not a very good fish at all'])
+    current.update_list(['im really optimistic'])
