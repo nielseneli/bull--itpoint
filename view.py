@@ -68,7 +68,7 @@ class SlideDeck(object):
 
 class Slide_List(SlideDeck):
     """ Inherits from SlideDeck class. Can make a title and a list of items.
-    This can only add a title at the beginning.
+    This can only add a title when it initializes.
     """
 
     def __init__(self, title='', items=None):
@@ -78,11 +78,11 @@ class Slide_List(SlideDeck):
         self.title = title
         if items is None:
             self.items = []
-            self.add_slide('# ' + self.title + '\n')
+            self.add_slide('## ' + self.title + '\n')
         else:
             self.items = items
             items_str = '\n- '.join(self.items)
-            self.add_slide('# ' + self.title + '\n\n- ' + items_str)
+            self.add_slide('## ' + self.title + '\n\n- ' + items_str)
 
     def update_list(self, new_items):
         """ Takes in list of one or more items, sets it as items attribute, and
@@ -95,40 +95,29 @@ class Slide_List(SlideDeck):
 
 class Slide_Title(SlideDeck):
     # TODO: Implement this with reveal.js.
-    """ Inherits from Slide class. Can make a title and a subtitle for a title
-    slide.
+    """ Inherits from SlideDeck class. Can make a title and a subtitle. This
+    can only add a title when it initializes.
     """
 
     def __init__(self, title='', subtitle=''):
-        '''Initially assigns optional title and subtitle values to the object's attributes.
-        '''
+        """ Initially assigns optional title and subtitle values to object's
+        attributes and creates a slide with that title and subtitle.
+        """
         self.title = title
         self.subtitle = subtitle
+        if self.subtitle is '':
+            self.add_slide('# ' + self.title + '\n\n')
+        else:
+            self.add_slide('# ' + self.title + '\n\n' + '### ' + self.subtitle + '\n')
 
-    def update(self):
-        """ Formats the title text with Flask so it looks like a title and
-        outputs to webpage. Calls separate file: slide_title_tempmlate.html
-        """
-        self.addtoDeck()
-        return render_template('slide_title_template.html', title=self.title, subtitle=self.subtitle)
-
-    def make_title(self, text):
-        """ Takes in title text.
-        Modifies self.title to match input text.
-        """
-        self.title = text
-
-    def make_subtitle(self, text):
+    def add_subtitle(self, text):
         """ Takes in subtitle text.
         Modifies self.subtitle to match input text.
         """
         self.subtitle = text
+        self.add_text_to_slide('### ' + text + '\n')
 
 if __name__ == '__main__':
-    # enables debugging mode, so you don't have to restart
-    # the server each time you change your code
-    # app.run(debug=True)
-
     trying = SlideDeck()
-    current = Slide_List(title='list slide pls', items=['um', 'sure', 'k','mybe'])
-    current.update_list(['im really optimistic'])
+    current = Slide_Title(title='title slide pls')
+    current.add_subtitle('does it work')
