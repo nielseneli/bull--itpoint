@@ -10,6 +10,7 @@ from flask import render_template
 
 
 app = Flask(__name__)
+slideDeck = view.SlideDeck('slidedeck')
 
 strings = ['create title slide', 'the title of this slide is cool shit']
 keystrokes = ['not quit']
@@ -17,21 +18,34 @@ keystrokes = ['not quit']
 slide = view.Slide_List()
 
 #functions for APIs and things
-def get_image_url(searchterm):
-    API_URL = 'https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q='
-    + searchterm.replace(' ', '%20')
-    r = requests.get(API_URL)
-    return json.loads(r.text)['responseData']['results']['unescapedUrl'] #the url for the first image
+def get_wolframalpha_imagetag(searchterm):
+    """ Used to get the first image tag from the Wolfram Alpha API. The return value is a dictionary
+    with keys that can go directly into html."""
+    base_url = 'http://api.wolframalpha.com/v2/query?'
+    app_id = credentials['wolframkey'] #api key
+    url_params = {'input':searchterm, 'appid':app_id}
+    headers = {'User-Agent':None}
+    data = urllib.urlencode(url_params)
+    req = urllib2.Request(base_url, data, headers)
+    xml = urllib2.urlopen(req).read()
+    tree = ET.fromstring(xml)
+    for e in tree.findall('pod'):
+        for item in [ef for ef in list(e) if ef.tag=='subpod']:
+            for it in [i for i in list(item) if i.tag=='img']:
+                if it.tag == 'img':
+                    if float(it.attrib['width']) > 50 and float(it.attrib['height']) > 50:
+                        return it.attrib
 
 # loop continues checking for new strings until user keystrokes
-@app.route('/')
 def main():
     global slide
     if strings:
         text = strings.pop(0)
         #       the following section is for creating a new slide
+        if 'today i am here to talk about' in text:
+            current = 
         if 'create title slide' in text:
-            print 'hit'
+
             slide = view.Slide_Title() # make new title slide
             return slide.update()
         elif 'create list slide' in text:
@@ -48,10 +62,9 @@ def main():
             bullet = text.split('point', 1)[1]
             slide.add_item(bullet)
             return slide.update()
-        elif 'add image of' in text:
-            searchterm = text.split('add image of')[1]
-            url = get_image_url(searchterm)
-            slide.add_image(url)
+        elif 'heres an image from wolfram alpha of' in text:
+            searchterm = text.split('heres an image from wolfram alpha of')[1]
+            slide.add_image(get_wolframalpha_imagetag(searchterm)['src'], get_wolframalpha_imagetag(searchterm)['alt'])
             return slide.update()
     
 
