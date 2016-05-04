@@ -25,6 +25,28 @@ Run:
 ```
 $ pip install twisted autobahn requests pyOpenSSL flask getch
 ```
+To run ```reveal.js```, you will also need to install it as seen on [reveal.js's readme](https://github.com/hakimel/reveal.js#full-setup), which is copied here for convenience: 
+
+1. Install Node.js (1.0.0 or later)
+
+2. Install Grunt
+
+3. Clone the reveal.js repository
+    ```
+    $ git clone https://github.com/hakimel/reveal.js.git
+    ```
+4. Navigate to the reveal.js folder
+    ```
+    $ cd reveal.js
+    ```
+5. Install dependencies
+    ``` $ npm install ```
+6. Serve the presentation and monitor source files for changes
+    ```
+    $ grunt serve
+    ```
+7. Open http://localhost:8000 to view your presentation
+
 You may also need to run:
 ```
 $ apt-get install build-essential python-dev
