@@ -4,17 +4,17 @@ layout: template
 filename: implementation
 ---
 
-# How Did We Implement Bull--itPoint?
+# How is Bull--itPoint Implemented?
 
 ## Technologies
-IBM BlueMix
-Reveal.js
-Wolfram Alpha API
-XML Trees
-Queues
+*IBM BlueMix
+*Reveal.js
+*Wolfram Alpha API
+*XML Trees
+*Queues
 
 ## Dependencies
-
+something
 
 ##Overview
 The code is comprised of three major parts, in a model-view-controller setup. The overall process takes audio input on a keypress, which is then processed by IBM's BlueMix speech-to-text. The text is then processed by our framework, which makes API calls to Wolfram Alpha, finds images from the local directory, or parses text based on keywords. The slides are then created in reveal.js and loaded to the presentation. *something something threading something something
