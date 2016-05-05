@@ -1,68 +1,25 @@
 ---
-title: Homepage
+title: Home
 layout: template
 filename: index
 ---
 
-# Bull--itPoint
+
+# What is Bull--itPoint?
+
+Quick and easily understandable explanation of what your project is all about. Consider including a narrative or example use case, e.g. via screenshots, video, or story boarding.
+
+Bull--itPoint is a flexible presentation software. It creates a slide deck in real time while you present, which aims toencourage and support more presentation styles and more procrastination. 
+
+# Use Cases
+
+We anticipate Bull--itPoint being used by:
+* people who are more comfortable when they "just wing it"
+* people who procrastinate on their projects they have to present for (We don't know anyone like this. Definitely not.)
+* people who have an agile presentation style and end up ad-libbing a significant amount to get their points across 
+
+# Example of Finished Presentation Format
+
+No idea how to get a demo in here.
 
 
-## IMPORTANT: Bull--itPoint is not in a working state currently. Development is active, and working builds will be tagged.
-
-## What It Does
-
-Bull--itPoint creates a slide deck, in real time, while you present, encouraging more flexible presentation styles and more procrastination.
-
-### Basic Code Structure:
-
-Bull--itPoint is written in Model-View-Controller form, with each component in a discrete file.
-
-Each of these live on their own thread, with the controller initializing everything.
-
-Data is passed between the controller and the framework on two queues, and the framework passes the view display objects.
-
-## How to Use
-
-Let's get started!
-
-### How to Download
-
-Press the "Download .zip" or "Download .tar.gz" button in the header to download either a .zip  or a tar.gz of the software.
-
-### How to Install
-
-Still figuring this out!
-
-#### Dependencies
-
-Run:
-
-```
-$ pip install twisted autobahn requests pyOpenSSL flask
-```
-
-You may also need to run:
-
-```
-$ apt-get install build-essential python-dev
-```
-
-### How to Run
-
-So start, simply run `controller.py`, eg:
-
-```
-python controller.py
-```
-
-## Credits
-
-### Team Members:
-
-[Jared Briskman](https://github.com/jaredbriskman "Jared's Github profile")
-
-[Margaret Crawford](https://github.com/Margaretmcrawf "Margo's Github profile")
-
-[Lauren Gulland](https://github.com/laurengulland "Lauren's Github profile")
-
-[Louise Nielsen](https://github.com/nielsenlouise "Louise's Github profile")
