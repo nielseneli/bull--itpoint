@@ -1,9 +1,10 @@
 """ This is the framework part of our interactive slide project. It will take a
     string input from the speech-to-text, process it and make a slide object.
+    Note: do not use more than one keyword input in a string. 
 
     Commands: 
     "Today I'm here to talk about BLANK": initializes a new title slide, titled BLANK.
-    "Which brings us to BLANK": initializes new slide that can contain a bulleted list, titled BLANK.
+    "Which brings us to BLANK/"next slide is about BLANK": initializes new slide that can contain a bulleted list, titled BLANK.
     "point"/"thing is": Creates a new bulllet point item. Note, it only matters what you say after the keyword, so if you were to say "My first
     point is BLANK" or "another important thing is BLANK" 
     "Here's an image from Wolfram Alpha of BLANK": Makes a call to the Wolfram Alpha API, and pulls up an image of the thing.
@@ -18,14 +19,10 @@ import requests
 from flask import Flask
 from flask import render_template
 
+slide_deck = view.SlideDeck(filename="slide_deck")
 
-app = Flask(__name__)
-slide_deck = view.SlideDeck('slidedeck')
-
-strings = ['today i am here to talk about']
+strings = ['today i am here to talk about pancakes', 'which brings us to toppings', 'in terms of toppings the most important thing is nutella']
 keystrokes = ['not quit']
-
-slide = slideDeck.Slide_List() #if nothing is called fist just make random list slide
 
 #functions for APIs and things
 def get_wolframalpha_imagetag(searchterm):
@@ -48,14 +45,16 @@ def get_wolframalpha_imagetag(searchterm):
 
 # loop continues checking for new strings until user keystrokes
 def main():
-    global slide
+    global current
     if strings:
         text = strings.pop(0)
         #       the following section is for creating a new slide
         if 'today i am here to talk about' in text:
-            current = Slide_Title(title=text.split('today i am here to talk about')[1])
+            current = view.Slide_Title(title=text.split('today i am here to talk about')[1])
         elif 'which brings us to' in text:
-            current = Slide_List(title=text.split('which brings us to')[1])
+            current = view.Slide_List(title=text.split('which brings us to')[1])
+        elif 'next slide is about' in text:
+            current = view.Slide_List(title=text.split('next slide is about')[1])
 
     #   This section calls slide methods when certain phrases are found in the string
         elif 'point' in text:
@@ -66,13 +65,13 @@ def main():
             current.update_list([bullet])
         elif 'heres an image from wolfram alpha of' in text:
             searchterm = text.split('heres an image from wolfram alpha of')[1]
-            current.add_image(get_wolframalpha_imagetag(searchterm)['src'], get_wolframalpha_imagetag(searchterm)['alt'])
+            current.add_image_to_slide(url=get_wolframalpha_imagetag(searchterm)['src'])
         elif 'figure one' in text:
-            current.add_image('figure1.jpg')
+            current.add_image_to_slide(filepath='figure1.jpg')
         elif 'figure two' in text:
-            current.add_image('figure2.jpg')
+            current.add_image_to_slide(filepath='figure2.jpg')
         elif 'figure three' in text:
-            current.add_image('figure3.jpg')
+            current.add_image_to_slide(filepath='figure3.jpg')
     
 
     #if the escape key is pressed, that will be sent to the keystroke queue which will quit the program.
@@ -80,10 +79,10 @@ def main():
             if keystrokes.pop() == 'esc':
                 sys.quit
 
-    return slide.update()
 if __name__ == '__main__':
     # enables debugging mode, so you don't have to restart
     # the server each time you change your code
-    app.run(debug=True)
     while True:
         main()
+    #print get_wolframalpha_imagetag('math')
+    pass
