@@ -95,11 +95,11 @@ def main(strqueue, keyqueue):
             searchterm = text.split('heres an image from wolfram alpha of')[1]
             current.add_image_to_slide(source=get_wolframalpha_imagetag(searchterm)['src'])
         elif 'figure one' in text:
-            current.add_image_to_slide(source='figure1.jpg')
+            current.add_image_to_slide(source='figure1.jpeg')
         elif 'figure two' in text:
-            current.add_image_to_slide(source='figure2.jpg')
+            current.add_image_to_slide(source='figure2.jpeg')
         elif 'figure three' in text:
-            current.add_image_to_slide(source='figure3.jpg')
+            current.add_image_to_slide(source='figure3.jpeg')
 
     # if the escape key is pressed, that will be sent to the keystroke queue
     # which will quit the program.
