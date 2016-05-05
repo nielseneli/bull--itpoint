@@ -5,7 +5,7 @@ filename: howtorun
 ---
 
 
-## Basic Code Structure:
+# Basic Code Structure:
 
 Bull--itPoint is written in Model-View-Controller form, with each component in a discrete file.
 
@@ -13,7 +13,7 @@ Each of these live on their own thread, with the controller initializing everyth
 
 Data is passed between the controller and the framework on two queues, and the framework passes the view display objects.
 
-# How to Use
+# Initial Set-Up
 
 Let's get started!
 
@@ -39,11 +39,25 @@ You may also need to run:
 $ apt-get install build-essential python-dev
 ```
 
-### How to Run
+## How to Run
 
-So start, simply run `controller.py`, eg:
+To start, simply run `controller.py`, eg:
 
 ```
 python controller.py
 ```
+
+# How to Use
+
+Upon keypress, the following commands will produce actions based on what you couple them with:
+
+| Command | Output |
+| ------- | ------ |
+| "Today I am here to talk about" | Creates title slide |
+| "Which brings us to" | Creates list slide |
+| "Next slide is about" | Creates list slide |
+| "Point" | Adds bullet point to list |
+| "Thing is" | Adds bullet point to list |
+| "Here's an image from Wolfram Alpha of" | Inserts image from Wolfram Alpha |
+| "Figure [One/Two/Three]" | Insert pre-loaded image from local directory |
 

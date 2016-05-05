@@ -22,4 +22,4 @@ Margo worked primarily on the framework of our project, while simultaneously hel
 Lauren worked on the Flask implementation of our project (for MVP), and has bounced around different areas, and did some other things we guess.
 
 [Louise Nielsen](https://github.com/nielsenlouise "Louise's Github profile")
-Louise worked on the reveal.js implementation of our project, and helped with framework when necessary, and did some other things we guess.
+Louise worked on the `reveal.js` implementation of our project, and helped with framework when necessary, and did some other things we guess.
