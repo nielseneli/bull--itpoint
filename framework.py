@@ -16,8 +16,9 @@ import view
 #from controller import strings, keystrokes
 import sys
 import requests
-from flask import Flask
-from flask import render_template
+import urllib
+import urllib2
+import xml.etree.ElementTree as ET
 
 slide_deck = view.SlideDeck(filename="slide_deck")
 
@@ -85,4 +86,3 @@ if __name__ == '__main__':
     while True:
         main()
     #print get_wolframalpha_imagetag('math')
-    pass
