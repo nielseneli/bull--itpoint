@@ -20,6 +20,5 @@ We anticipate Bull--itPoint being used by:
 
 # Example of Finished Presentation Format
 
-No idea how to get a demo in here.
-
+We're using `reveal.js` for our ouput as slides. You can view a sample presentation [here](http://lab.hakim.se/reveal-js/#/ "Sample reveal.js presentation").
 
