@@ -1,13 +1,12 @@
-""" Contains the View part of the project. Has a Slide class, as well as
-    classes that inherit from that: Slide_List, Slide_Title, etc. This branch
-    is implementing reveal.js to render a presentation.
+""" Contains the View part of Bull--itPoint. Has a SlideDeck class, as well as
+    classes that inherit from that: Slide_List, Slide_Title, etc.
 """
 
 
 class SlideDeck(object):
     """ The SlideDeck object is the index.html file in the reveal.js-master
     folder. When a new SlideDeck object is initialized, it copies index.copy in
-    the slAIdes folder. It is necessary to run SlideDeck.end when the
+    the bull--itpoint folder. It is necessary to run SlideDeck.end when the
     presentation is complete to save a copy of index.html to preserve the
     slidedeck for later use.
     """
@@ -46,7 +45,7 @@ class SlideDeck(object):
 
     def end(self):
         """ Saves the index.html file as self.filename + .html, currently in
-        the slAIdes folder instead of the reveal.js-master folder.
+        the bull--itpoint folder instead of the reveal.js-master folder.
         """
         with open(self.filename + '.html', 'w') as new_file:
             with open('reveal.js-master/index.html', 'r') as f:
@@ -64,6 +63,16 @@ class SlideDeck(object):
             deck.seek(0)
             deck.write(''.join(deck_lines))
             deck.truncate()
+
+    def add_image_to_slide(self, url='', filepath=''):
+        """ Adds an image to a slide. If url is provided, adds the image at that
+        url. If a filepath is provided, adds the image in that location.
+        """
+        if url is not '':
+            self.add_text_to_slide('![](' + url + ')\n')
+        if filepath is not '':
+            self.add_text('![](' + filepath + ')\n')
+
 
 
 class Slide_List(SlideDeck):
