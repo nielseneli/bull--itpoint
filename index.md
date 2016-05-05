@@ -15,11 +15,11 @@ Bull--itPoint is a flexible presentation software. It creates a slide deck in re
 
 We anticipate Bull--itPoint being used by:
 
-* people who are more comfortable when they "just wing it"
+1. people who are more comfortable when they "just wing it"
 
-* people who procrastinate on their projects they have to present for (We don't know anyone like this. Definitely not.)
+2.  people who procrastinate on their projects they have to present for (We don't know anyone like this. Definitely not.)
 
-* people who have an agile presentation style and end up ad-libbing a significant amount to get their points across 
+3.  people who have an agile presentation style and end up ad-libbing a significant amount to get their points across 
 
 # Example of Finished Presentation Format
 
