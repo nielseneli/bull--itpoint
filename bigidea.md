@@ -14,4 +14,6 @@ Bull--itPoint is a flexible presentation software. It creates a slide deck in re
 
 We anticipate Bull--itPoint being used by people who are better when they "just wing it", by people who procrastinate on their projects they have to present for, or by people who have an agile presentation style and end up ad-libbing a significant amount to get their points across. 
 
-![Image of Something?](https://octodex.github.com/images/yaktocat.png)
+# Example of Final Product
+
+![Embedded version of Slideshow?](https://www.slideshare.net/slideshow/embed_code/42840540)
