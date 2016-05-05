@@ -3,6 +3,7 @@ import requests
 import os
 import pyaudio
 import wave
+import evdev
 
 
 with open('credentials.json') as credential_file:
