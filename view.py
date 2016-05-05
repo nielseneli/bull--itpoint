@@ -25,6 +25,8 @@ class SlideDeck(object):
         """ Inserts text at the text-insert cue, which is always after the
         previous slide. The text-insert cue is hardcoded into index.copy but
         can be changed (is currently \t\t\t\t<!-- insert here pls -->\n)
+        Takes in:
+                text: the text to add to index.html
         """
         with open('reveal.js-master/index.html', 'r+') as deck:
             deck_lines = deck.readlines()
@@ -36,8 +38,10 @@ class SlideDeck(object):
 
     def add_slide(self, slide_text):
         """ Adds a slide with the correct html formatting to be a markdown
-        slide. slide_text is just plain text; more formatting, specific to
-        types of slides, must be provided. Calls SlideDeck.add_text().
+        slide. Calls SlideDeck.add_text().
+        Takes in:
+                slide_text: text to be inserted within slide formatting in
+        index.html
         """
         formatting = '\t\t\t\t<section data-markdown>\n\t\t\t\t\t<script type ="text/template">\n\t\t\t\t\t\t'
         formatting2 = '\n\t\t\t\t\t</script>\n\t\t\t\t</section>\n'
@@ -54,7 +58,9 @@ class SlideDeck(object):
 
     def add_text_to_slide(self, additional_text):
         """ Finds the insert cue, goes back two lines to account for formatting,
-        then adds things.
+        then adds the additional text.
+        Takes in:
+                additional_text: text to add to the current slide in index.html
         """
         with open('reveal.js-master/index.html', 'r+') as deck:
             deck_lines = deck.readlines()
@@ -64,15 +70,13 @@ class SlideDeck(object):
             deck.write(''.join(deck_lines))
             deck.truncate()
 
-    def add_image_to_slide(self, url='', filepath=''):
-        """ Adds an image to a slide. If url is provided, adds the image at that
-        url. If a filepath is provided, adds the image in that location.
+    def add_image_to_slide(self, source=''):
+        """ Adds an image to the current slide.
+        Takes in:
+                source: the source of the file. Must be either a URL or a
+        filepath.
         """
-        if url is not '':
-            self.add_text_to_slide('![](' + url + ')\n')
-        if filepath is not '':
-            self.add_text('![](' + filepath + ')\n')
-
+        self.add_text_to_slide('![](' + source + ')\n')
 
 
 class Slide_List(SlideDeck):
@@ -83,6 +87,11 @@ class Slide_List(SlideDeck):
     def __init__(self, title='', items=None):
         """ Initially assigns optional title value and list of items to object's
         attributes and creates a slide with that title and those list items.
+        Attributes:
+                title: the title of the slide. Must be provided when the class
+        instance is initialized and is a string.
+                items: the items listed on the slide. May be updated/added to
+        and is a list of strings.
         """
         self.title = title
         if items is None:
@@ -96,6 +105,9 @@ class Slide_List(SlideDeck):
     def update_list(self, new_items):
         """ Takes in list of one or more items, sets it as items attribute, and
         updates index.html to present the updated slide.
+        Takes in:
+                new_items: a list of strings, each of which to be added as an
+        element of the list on the current slide.
         """
         self.items.extend(new_items)
         items_str = '\n- '.join(new_items)
@@ -110,6 +122,11 @@ class Slide_Title(SlideDeck):
     def __init__(self, title='', subtitle=''):
         """ Initially assigns optional title and subtitle values to object's
         attributes and creates a slide with that title and subtitle.
+        Attributes:
+                title: the title of the slide. Must be provided when the class
+        instance is initialized and is a string.
+                subtitle: the subtitle of the slide. May be added after the
+        instance is initialized and is a string.
         """
         self.title = title
         self.subtitle = subtitle
@@ -119,8 +136,9 @@ class Slide_Title(SlideDeck):
             self.add_slide('# ' + self.title + '\n\n' + '### ' + self.subtitle + '\n')
 
     def add_subtitle(self, text):
-        """ Takes in subtitle text.
-        Modifies self.subtitle to match input text.
+        """ Takes in subtitle text. Modifies self.subtitle to match input text.
+        Takes in:
+                text: the subtitle of the slide. Is a string.
         """
         self.subtitle = text
         self.add_text_to_slide('### ' + text + '\n')

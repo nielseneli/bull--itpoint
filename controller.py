@@ -1,71 +1,76 @@
-from Queue import Queue
-import threading
-from threading import Thread
+from multiprocessing import Process, Queue
 import time
-import sys
 import framework
-import view
-import getch
 import json
 import requests
-import os
 import pyaudio
 import wave
+import evdev
 
-#TODO: Heartbeat threading, bluemix integration, better structure.
 
-keystrokes = Queue()
-strings = Queue()
+device = evdev.InputDevice('/dev/input/event4')
 
 with open('credentials.json') as credential_file:
     credentials = json.load(credential_file)
 
-def main():
-    """Idles waiting for keystrokes. If key is escape, puts "esc" on keystrokes queue,
-    which will initiate framework raising SystemExit. If key is enter, it should start a bluemix STT worker thread."""
-    key = ord(getch())
-    if key == 27: #ESC
-        keystrokes.put("esc")
-    elif key == 13: #Enter
-        #TODO: Start a bluemix thread? Have to sort bluemix out first.
-        #Probably a worker daemon though.
-        strings.put(bluemix())
+
+def main(strqueue, keyqueue):
+    """ Idles waiting for keystrokes. If key is escape, puts "esc" on keystrokes
+    queue, which will initiate framework raising SystemExit. If key is space,
+    while space is held, records audio and then sends audio to Bluemix and adds
+    the returned string to the strings queue.
+    Takes in:
+            strqueue: the queue that deals with text strings
+            keyqueue: the queue that deals with keystrokes
+    """
+    keys = device.active_keys()
+    if keys:
+        for key in keys:
+            if key == 1:  # ESC
+                keyqueue.put("esc")
+            elif key == 57:  # Space bar
+                record()
+                filepath = 'recording.wav'  # path to file
+                audio = open(filepath,'rb').read()
+                text = bluemix(audio)
+                strqueue.put(text)
+                # print to the command line so you can see if Bluemix messed up
+                print text
+
 
 def bluemix(audio_input):
-    """Should stream data through a bluemix session until enter keyup and
-    recieve results, then return the most probable text as a string"""
-
+    """ Streams data through a bluemix session until enter keyup and
+    recieve results, then returns the most probable text as a string.
+    Takes in:
+            audio_input: the .wav file containing speech to interpret
+    """
     api_method = '/v1/recognize'
-    url = credentials['url']
+    url = credentials['credentials']["url"]
     POST_url = url+api_method
-    header={'Content-Type': 'audio/wav'}
-    payload = {'continuous':True, 'profanity_filter': False}
-
-    response = requests.post(POST_url, auth=(credentials['username'], credentials['password']),headers=header,data=audio_input,params=payload)
-
-    # print 'recieved'
+    header = {'Content-Type': 'audio/wav'}
+    payload = {'continuous': True, 'profanity_filter': False}
+    response = requests.post(POST_url, auth=(credentials['credentials']['username'], credentials['credentials']['password']), headers=header, data=audio_input, params=payload)
     assert (response.status_code == 200)
-    # print('status_code: {} (reason: {})'.format(response.status_code, response.reason))
     result = json.loads(response.text)
     return result['results'][0]['alternatives'][0]['transcript']
-    # print 'done'
+
 
 def record():
+    """ Records audio while the space bar is pressed and saves the audio to
+    recording.wav. """
     FORMAT = pyaudio.paInt16
     CHANNELS = 2
     RATE = 44100
     CHUNK = 1024
-    RECORD_SECONDS = 5
     WAVE_OUTPUT_FILENAME = "recording.wav"
 
     audio = pyaudio.PyAudio()
     # start Recording
     stream = audio.open(format=FORMAT, channels=CHANNELS,
-                    rate=RATE, input=True,
-                    frames_per_buffer=CHUNK)
-    # print "recording..."
+                        rate=RATE, input=True,
+                        frames_per_buffer=CHUNK)
     frames = []
-    for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
+    while 57 in device.active_keys():
         data = stream.read(CHUNK)
         frames.append(data)
     print "finished recording"
@@ -83,37 +88,31 @@ def record():
     waveFile.close()
 
 if __name__ == '__main__':
-    #Threading targets
-    def _frameworkstart():
+    _running = True
+    # Initialize the queues
+    strings = Queue()
+    keystrokes = Queue()
+    # Define process targets
+    def _frameworkstart(strqueue, keyqueue):
         try:
-        	global _running
-        	while _running:
-        		framework.main()
+            global _running
+            while _running:
+                framework.main(strqueue, keyqueue)
                 time.sleep(.01)
         except SystemExit:
-    		_running = False
+            _running = False
 
-    def _controllerstart():
-    	global _running
-    	while _running:
-    		main()
+    def _controllerstart(strqueue, keyqueue):
+        global _running
+        while _running:
+            main(strqueue, keyqueue)
             time.sleep(.01)
+    # Initialilze processes
+    cProcess = Process(target=_controllerstart, args=((strings),(keystrokes),), name='CONTROLLER')
+    fProcess = Process(target=_frameworkstart, args=((strings),(keystrokes),), name='FRAMEWORK')
+    # Start and join processes
+    cProcess.start()
+    fProcess.start()
 
-    def _viewstart():
-    	global _running
-    	while _running:
-    		view()
-
-    cThread = Thread(target=_controllerstart, name='CONTROLLER')
-    vThread = Thread(target=_viewstart, name='VIEW')
-    fThread = Thread(target=_frameworkstart, name='FRAMEWORK')
-
-
-    #Initialize and join
-    cThread.start()
-    vThread.start()
-    fThread.start()
-
-    cThread.join()
-    vThread.join()
-    fThread.join()
+    cProcess.join()
+    fProcess.join()

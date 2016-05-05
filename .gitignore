@@ -1,3 +1,8 @@
 credentials.json
 
 /reveal.js-master
+
+controller.pyc
+framework.pyc
+recording.wav
+view.pyc
