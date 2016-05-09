@@ -13,9 +13,9 @@
 """
 
 import view
-import string
-from multiprocessing import Queue, Process
-from controller import strings, keystrokes
+# import string
+# from multiprocessing import Queue, Process
+# from controller import strings, keystrokes
 import sys
 import requests
 import urllib
@@ -95,8 +95,8 @@ def main(strqueue, keyqueue):
             searchterm = text.split('heres an image from wolfram alpha of')[1]
             current.add_image_to_slide(source=get_wolframalpha_imagetag(searchterm)['src'])
         elif 'figure one' in text:
-            current.add_image_to_slide(source='figure1.jpeg')
-        elif 'figure two' in text:
+            current.add_image_to_slide(source='figure1.png')
+        elif 'figure two' or 'figure to' or 'figure 2' in text:
             current.add_image_to_slide(source='figure2.jpeg')
         elif 'figure three' in text:
             current.add_image_to_slide(source='figure3.jpeg')
