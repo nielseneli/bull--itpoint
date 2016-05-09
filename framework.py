@@ -47,6 +47,10 @@ def get_wolframalpha_imagetag(searchterm):
                     if float(it.attrib['width']) > 50 and float(it.attrib['height']) > 50:
                         return it.attrib
 
+def get_getty_imagetag(searchterm):
+    """ Used to get an image fro the Getty Images API. The return value is an image uri."""
+    pass
+
 
 # loop continues checking for new strings until user keystrokes
 def main(strqueue, keyqueue):
@@ -79,10 +83,16 @@ def main(strqueue, keyqueue):
         #       the following section is for creating a new slide
         if 'today i am here to talk about' in text:
             current = view.Slide_Title(title=text.split('today i am here to talk about')[1])
+        elif 'today i am here to talk to you about' in text:
+            current = view.Slide_Title(title=text.split('today i am here to talk to you about')[1])
         elif 'which brings us to' in text:
             current = view.Slide_List(title=text.split('which brings us to')[1])
         elif 'next slide is about' in text:
             current = view.Slide_List(title=text.split('next slide is about')[1])
+        elif 'presented by' in text:
+            current.add_subtitle(text='presented by' + text.split('presented by')[1])
+        elif 'my name is' in text:
+            current.add_subtitle(text='presented by' + text.split('my name is')[1])
 
     #   This section calls slide methods when certain phrases are found in the string
         elif 'point' in text:
