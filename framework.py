@@ -15,12 +15,17 @@
 import view
 import string
 from multiprocessing import Queue, Process
-from controller import strings, keystrokes
+#from controller import strings, keystrokes
 import sys
 import requests
 import urllib
 import urllib2
 import xml.etree.ElementTree as ET
+import json
+import pycurl
+
+with open('credentials.json') as credential_file:
+    credentials = json.load(credential_file)['credentials']
 
 slide_deck = view.SlideDeck(filename="slide_deck")
 
@@ -49,7 +54,9 @@ def get_wolframalpha_imagetag(searchterm):
 
 def get_getty_imagetag(searchterm):
     """ Used to get an image fro the Getty Images API. The return value is an image uri."""
-    pass
+    c = pycurl.Curl()
+    c.setopt(c.URL, "https://api.gettyimages.com/v3/search/images?phrase=" + searchterm)
+    c.setopt(c.HTTPHEADER, 'Api-Key:' + credentials['gettykey'])
 
 
 # loop continues checking for new strings until user keystrokes
@@ -100,6 +107,9 @@ def main(strqueue, keyqueue):
             current.update_list([bullet])
         elif "thing is" in text:
             bullet = text.split('thing is', 1)[1]
+            current.update_list([bullet])
+        elif "first" in text:
+            bullet = text.split('first', 1)[1]
             current.update_list([bullet])
         elif "here's an image from wolfram alpha of" in text:
             searchterm = text.split('heres an image from wolfram alpha of')[1]
