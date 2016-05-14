@@ -17,7 +17,7 @@ filename: implementation
 something
 
 ## Overview
-The code is comprised of three major parts, in a model-view-controller setup. The overall process takes audio input on a keypress, which is then processed by IBM's BlueMix speech-to-text. The text is then processed by our framework, which makes API calls to Wolfram Alpha, finds images from the local directory, or parses text based on keywords. The slides are then created in reveal.js and loaded to the presentation. *something something threading something something
+The code is comprised of three major parts, in a model-view-controller setup. The overall process takes audio input on a keypress, which is then processed by IBM's BlueMix speech-to-text. The text is then processed by our framework, which parses text based on keywords to write spoken information on slides, makes API calls to Wolfram Alpha, or finds images from the local directory. The slides are then created in reveal.js and loaded to the presentation, which you can click through as content is dunamically added.
 
 ## Controller
 Controller initializes the other functions, and uses keyboard input from (*some keypress technology???*). 
@@ -25,10 +25,7 @@ It uses this to start recording audio with (*some package or other*) and then ge
 
 ## Framework
 The framework is divided into two functions:
-  `main`:
-This function takes the queue from controller.py and parses the strings, then writes things to view.
-  `get_wolfram_imagetag`:
-This function takes a searchterm and calls the Wolfram API, then parses the resulting xml tree for an image and returns the url source.
+`main`, which takes the queue from controller.py and parses the strings, then writes things to view; and `get_wolfram_imagetag`, which takes a searchterm and calls the Wolfram API, then parses the resulting xml tree for an image and returns the url source.
 
 In the future, as we get more API integration and functionalities along this vein, this section will expand to cover those.
 
