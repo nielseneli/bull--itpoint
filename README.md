@@ -1,6 +1,6 @@
 # Bull--itPoint
 
-##IMPORTANT: Bull--itPoint is not in a working state currently. Development is active, and working builds will be tagged.
+##IMPORTANT: Bull--itPoint is constantly a work in progress. Development is active, and working builds will be tagged.
 
 ## What It Does
 Bull--itPoint is flexible presentation software. It creates a slide deck, in real time, while you present, encouraging more flexible presentation styles and more procrastination.
