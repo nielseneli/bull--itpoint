@@ -7,7 +7,7 @@ filename: index
 
 # What is Bull--itPoint?
 
-Bull--itPoint is a flexible presentation software. It creates a slide deck in real time while you present, which aims toencourage and support more presentation styles and more procrastination. 
+Bull--itPoint is a flexible presentation software. It creates a slide deck in real time while you present, which aims to encourage and support more presentation styles and more procrastination. 
 
 # Use Cases
 
@@ -23,5 +23,5 @@ We anticipate Bull--itPoint being used by:
 
 # Finished Presentation Format
 
-We're using `reveal.js` for our ouput as slides. You can view a sample presentation [here](http://lab.hakim.se/reveal-js/#/ "Sample reveal.js presentation").
+We're using `reveal.js` for our ouput as slides. You can view a sample presentation [here](http://lab.hakim.se/reveal-js/#/ "Sample reveal.js presentation"), or download Bull--itPoint and try it for yourself!
 
