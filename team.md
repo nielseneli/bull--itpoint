@@ -4,10 +4,10 @@ layout: template
 filename: team
 ---
 
-# The Class: 
-This project was created as a final project by four first years for Olin College's Software Design Class, in the spring of 2016. SoftDes focuses on teaching students a variety of Python skills via multiple mini-projects leading up to this final project, and is very hands-on in its style of learning. 
+# The Assignment: 
+This project was created as a final project by four first years for Olin College's Introduction to Software Design Class in the spring of 2016. SoftDes focuses on teaching students a variety of Python skills via multiple mini-projects leading up to this final project, and is very hands-on in its style of learning. 
 
-See more at the  [project description and evaluation](https://sites.google.com/site/sd16spring/home/assignments-and-mini-projects/final-project-1 "Olin College - Software Design Spring 2016") on our class website.
+See more at the  [project description and evaluation](https://sites.google.com/site/sd16spring/home/assignments-and-mini-projects/final-project-1 "Olin College - Software Design Spring 2016") on the class website.
 
 
 # Team Members:
