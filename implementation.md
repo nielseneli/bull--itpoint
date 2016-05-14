@@ -7,11 +7,11 @@ filename: implementation
 # How is Bull--itPoint Implemented?
 
 ## Technologies
-*IBM BlueMix
-*Reveal.js
-*Wolfram Alpha API
-*XML Trees
-*Queues
+- IBM BlueMix
+- Reveal.js
+- Wolfram Alpha API
+- XML Trees
+- Queues
 
 ## Dependencies
 something
@@ -25,13 +25,12 @@ It uses this to start recording audio with (*some package or other*) and then ge
 
 ## Framework
 The framework is divided into two functions:
-main:
+  `main`:
 This function takes the queue from controller.py and parses the strings, then writes things to view.
-get_wolfram_imagetag:
+  `get_wolfram_imagetag`:
 This function takes a searchterm and calls the Wolfram API, then parses the resulting xml tree for an image and returns the url source.
 
+In the future, as we get more API integration and functionalities along this vein, this section will expand to cover those.
+
 ## View
-This defines the objects to be used in the other functions and the methods for updating the reveal.js slideshow. The basic object is a slide deck, which must be initialized before creating any slides. Then there are two types of slide-- title slides and list slides. Each have different methods
-
-
-Code doesn't tell a story by itself. Use more effective methods such as flowcharts and architectural or class diagrams to explain how your code works. You could consider including or linking to snippets of code to highlight a particularly crucial segment.
+This defines the objects to be used in the other functions and the methods for updating the reveal.js slideshow. The basic object is a slide deck, which must be initialized before creating any slides. Then there are two types of slide-- title slides and list slides. Each have different methods to initialize their certain properties, and have helper methods to add functionality specific to them.
