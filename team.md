@@ -12,18 +12,10 @@ See more at the  [project description and evaluation](https://sites.google.com/s
 
 # Team Members:
 
-[Jared Briskman](https://github.com/jaredbriskman "Jared's Github profile") --
+[Jared Briskman](https://github.com/jaredbriskman "Jared's Github profile") -- Jared worked heavily with the implementation of IBM's BlueMix API for our natural language processing, and had a bus factor of 1 for most of the project. Thanks for staying alive, Jared.
 
-Jared worked heavily with the implementation of IBM's BlueMix API for our natural language processing, and had a bus factor of 1 for most of the project. Thanks for staying alive, Jared.
+[Margaret Crawford](https://github.com/Margaretmcrawf "Margo's Github profile") -- Margo worked primarily on the framework of our project, while simultaneously helping out with the view aspect and wherever else she was needed.
 
-[Margaret Crawford](https://github.com/Margaretmcrawf "Margo's Github profile") --
+[Lauren Gulland](https://github.com/laurengulland "Lauren's Github profile") -- Lauren worked on the Flask implementation of our project (for MVP), and has since bounced around different areas, mostly between view, framework, and this site.
 
-Margo worked primarily on the framework of our project, while simultaneously helping out with the view aspect and wherever else she was needed.
-
-[Lauren Gulland](https://github.com/laurengulland "Lauren's Github profile") -- 
-
-Lauren worked on the Flask implementation of our project (for MVP), and has since bounced around different areas, mostly between view, framework, and this site.
-
-[Louise Nielsen](https://github.com/nielsenlouise "Louise's Github profile") -- 
-
-Louise worked on the `reveal.js` implementation of our project, and helped with the site, framework, and just generally keeping us all accountable and on top of things.
+[Louise Nielsen](https://github.com/nielsenlouise "Louise's Github profile") -- Louise worked on the `reveal.js` implementation of our project, and helped with the site, framework, and just generally keeping us all accountable and on top of things.
