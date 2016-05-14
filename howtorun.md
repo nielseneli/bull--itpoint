@@ -15,11 +15,9 @@ Data is passed between the controller and the framework on two queues, and the f
 
 # Initial Set-Up
 
-Let's get started!
-
 ## How to Download
 
-Press the "Download .zip" or "Download .tar.gz" button in the header to download either a .zip  or a .tar.gz of the software.
+Press the "Download .zip" or "Download .tar.gz" button in the header to download either a .zip  or a .tar.gz of the software, or visit our github ("View on Github" in header bar) for the active build.
 
 ## How to Install
 
