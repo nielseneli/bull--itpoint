@@ -55,6 +55,7 @@ Upon keypress, the following commands will produce actions based on what you cou
 | Command | Output on Slide |
 | ------- | ------ |
 | "Today I am here to talk about..." | Creates title slide |
+| "My name is..." | Adds "Presented by" subtitle to title slide |
 | "Which brings us to..." | Creates list slide |
 | "Next slide is about..." | Creates list slide |
 | "Point..." | Adds bullet point to list |
