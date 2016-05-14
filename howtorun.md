@@ -56,8 +56,8 @@ Upon keypress, the following commands will produce actions based on what you cou
 | ------- | ------ |
 | "Today I am here to talk about..." | Creates title slide |
 | "My name is..." | Adds "Presented by" subtitle to title slide |
-| "Which brings us to..." | Creates list slide |
-| "Next slide is about..." | Creates list slide |
+| "Which brings us to..." | Creates new slide wtih specified title |
+| "Next slide is about..." | Creates new slide wtih specified title |
 | "Point..." | Adds bullet point to list |
 | "Thing is..." | Adds bullet point to list |
 | "Here's an image from Wolfram Alpha of..." | Inserts image from Wolfram Alpha |
