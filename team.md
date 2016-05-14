@@ -12,14 +12,18 @@ See more at the  [project description and evaluation](https://sites.google.com/s
 
 # Team Members:
 
-[Jared Briskman](https://github.com/jaredbriskman "Jared's Github profile")
-Jared worked heavily with the implementation of IBM's BlueMix API for our natural language processing, and did some other things we guess.
+[Jared Briskman](https://github.com/jaredbriskman "Jared's Github profile") --
 
-[Margaret Crawford](https://github.com/Margaretmcrawf "Margo's Github profile")
-Margo worked primarily on the framework of our project, while simultaneously helping out with the view aspect as well and did some other things we guess.
+Jared worked heavily with the implementation of IBM's BlueMix API for our natural language processing, and had a bus factor of 1 for most of the project. Thanks for staying alive, Jared.
 
-[Lauren Gulland](https://github.com/laurengulland "Lauren's Github profile")
-Lauren worked on the Flask implementation of our project (for MVP), and has bounced around different areas, and did some other things we guess.
+[Margaret Crawford](https://github.com/Margaretmcrawf "Margo's Github profile") --
 
-[Louise Nielsen](https://github.com/nielsenlouise "Louise's Github profile")
-Louise worked on the `reveal.js` implementation of our project, and helped with framework when necessary, and did some other things we guess.
+Margo worked primarily on the framework of our project, while simultaneously helping out with the view aspect and wherever else she was needed.
+
+[Lauren Gulland](https://github.com/laurengulland "Lauren's Github profile") -- 
+
+Lauren worked on the Flask implementation of our project (for MVP), and has since bounced around different areas, mostly between view, framework, and this site.
+
+[Louise Nielsen](https://github.com/nielsenlouise "Louise's Github profile") -- 
+
+Louise worked on the `reveal.js` implementation of our project, and helped with the site, framework, and just generally keeping us all accountable and on top of things.
