@@ -23,6 +23,8 @@ import urllib2
 import xml.etree.ElementTree as ET
 import json
 import pycurl
+from io import BytesIO
+import ast
 
 with open('credentials.json') as credential_file:
     credentials = json.load(credential_file)['credentials']
@@ -54,9 +56,16 @@ def get_wolframalpha_imagetag(searchterm):
 
 def get_getty_imagetag(searchterm):
     """ Used to get an image fro the Getty Images API. The return value is an image uri."""
+    buf = BytesIO()
+
     c = pycurl.Curl()
     c.setopt(c.URL, "https://api.gettyimages.com/v3/search/images?phrase=" + searchterm)
-    c.setopt(c.HTTPHEADER, 'Api-Key:' + credentials['gettykey'])
+    c.setopt(c.HTTPHEADER, ['Api-Key:' + credentials['gettykey']])
+    c.setopt(c.WRITEFUNCTION, buf.write)
+    c.perform()
+
+    dictionary = json.loads(buf.getvalue())
+    return dictionary[u'images'][0][u'display_sizes'][0][u'uri']
 
 
 # loop continues checking for new strings until user keystrokes
@@ -129,5 +138,6 @@ def main(strqueue, keyqueue):
                 sys.quit
 
 if __name__ == '__main__':
-    while True:
-        main()
+    #while True:
+        #main()
+    print get_getty_imagetag('bananas')
