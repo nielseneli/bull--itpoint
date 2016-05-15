@@ -52,7 +52,7 @@ def get_wolframalpha_imagetag(searchterm):
             for it in [i for i in list(item) if i.tag == 'img']:
                 if it.tag == 'img':
                     if float(it.attrib['width']) > 50 and float(it.attrib['height']) > 50:
-                        return it.attrib
+                        return it.attrib['src']
 
 def get_getty_imagetag(searchterm):
     """ Used to get an image fro the Getty Images API. The return value is an image uri."""
@@ -122,7 +122,10 @@ def main(strqueue, keyqueue):
             current.update_list([bullet])
         elif "here's an image from wolfram alpha of" in text:
             searchterm = text.split('heres an image from wolfram alpha of')[1]
-            current.add_image_to_slide(source=get_wolframalpha_imagetag(searchterm)['src'])
+            current.add_image_to_slide(source=get_wolframalpha_imagetag(searchterm))
+        elif "here's an image of" in text:
+            searchterm = text.split("here's an image of")[1]
+            current.add_image_to_slide(source=get_getty_imagetag(searchterm))
         elif 'figure one' in text:
             current.add_image_to_slide(source='figure1.jpeg')
         elif 'figure two' in text:
@@ -138,6 +141,5 @@ def main(strqueue, keyqueue):
                 sys.quit
 
 if __name__ == '__main__':
-    #while True:
-        #main()
-    print get_getty_imagetag('bananas')
+    while True:
+        main()
