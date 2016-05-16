@@ -13,9 +13,15 @@
 """
 
 import view
+<<<<<<< HEAD
 import string
 from multiprocessing import Queue, Process
 #from controller import strings, keystrokes
+=======
+# import string
+# from multiprocessing import Queue, Process
+# from controller import strings, keystrokes
+>>>>>>> b9e433068b3ac0a0f138ca99e86fc51320aaaf59
 import sys
 import requests
 import urllib
@@ -127,8 +133,8 @@ def main(strqueue, keyqueue):
             searchterm = text.split("here's an image of")[1]
             current.add_image_to_slide(source=get_getty_imagetag(searchterm))
         elif 'figure one' in text:
-            current.add_image_to_slide(source='figure1.jpeg')
-        elif 'figure two' in text:
+            current.add_image_to_slide(source='figure1.png')
+        elif 'figure two' or 'figure to' or 'figure 2' in text:
             current.add_image_to_slide(source='figure2.jpeg')
         elif 'figure three' in text:
             current.add_image_to_slide(source='figure3.jpeg')

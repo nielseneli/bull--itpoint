@@ -7,7 +7,8 @@ import pyaudio
 import wave
 import evdev
 
-
+strings = Queue()
+keystrokes = Queue()
 device = evdev.InputDevice('/dev/input/event4')
 
 with open('credentials.json') as credential_file:
@@ -90,8 +91,8 @@ def record():
 if __name__ == '__main__':
     _running = True
     # Initialize the queues
-    strings = Queue()
-    keystrokes = Queue()
+    # strings = Queue()
+    # keystrokes = Queue()
     # Define process targets
     def _frameworkstart(strqueue, keyqueue):
         try:

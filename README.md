@@ -1,7 +1,5 @@
 # slAIdes
 
-##IMPORTANT: SlAIdes is not in a working state currently. Development is active, and working builds will be tagged.
-
 ## What It Does
 slAIdes is flexible presentation software. It creates a slide deck, in real time, while you present, encouraging more flexible presentation styles and more procrastination.
 
@@ -25,7 +23,7 @@ Run:
 ```
 $ pip install twisted autobahn requests pyOpenSSL flask getch
 ```
-To run ```reveal.js```, you will also need to install it as seen on [reveal.js's readme](https://github.com/hakimel/reveal.js#full-setup), which is copied here for convenience: 
+To run ```reveal.js```, you will also need to install it as seen on [reveal.js's readme](https://github.com/hakimel/reveal.js#full-setup), which is copied here for convenience:
 
 1. Install Node.js (1.0.0 or later)
 
