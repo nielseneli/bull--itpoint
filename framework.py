@@ -3,25 +3,26 @@
     Note: do not use more than one keyword input in a string.
 
     Commands:
-    "Today I'm here to talk about BLANK": initializes a new title slide, titled BLANK.
-    "Which brings us to BLANK/"next slide is about BLANK": initializes new slide that can contain a bulleted list, titled BLANK.
-    "point"/"thing is": Creates a new bulllet point item. Note, it only matters what you say after the keyword, so if you were to say "My first
-    point is BLANK" or "another important thing is BLANK"
-    "Here's an image from Wolfram Alpha of BLANK": Makes a call to the Wolfram Alpha API, and pulls up an image of the thing.
-    "Figure 1"/"Figure 2"/"Figure 3": Displays user's own images. These images must be put in the user's directory before the presentation
-    and should be labeled figure1.jpg etc.
+    Commands:
+            "today I am here to talk about": creates a new title slide
+            "which brings us to": creates a new List slide
+            "next slide is about": creates a new List slide
+            "point": create a new list element
+            "thing is": create a new list element
+            "here's an image from wolfram alpha of": adds an image taken from
+    the Wolfram Alpha API to the current slide
+            "figure one": adds figure1.jpg from the local repository to the
+    current slide
+            "figure two":adds figure2.jpg from the local repository to the
+    current slide
+            "figure three":adds figure3.jpg from the local repository to the
+    current slide
 """
 
 import view
 <<<<<<< HEAD
 import string
 from multiprocessing import Queue, Process
-#from controller import strings, keystrokes
-=======
-# import string
-# from multiprocessing import Queue, Process
-# from controller import strings, keystrokes
->>>>>>> b9e433068b3ac0a0f138ca99e86fc51320aaaf59
 import sys
 import requests
 import urllib
@@ -82,20 +83,6 @@ def main(strqueue, keyqueue):
     Takes in:
             strqueue:
             keyqueue:
-    Commands:
-            "today I am here to talk about": creates a new title slide
-            "which brings us to": creates a new List slide
-            "next slide is about": creates a new List slide
-            "point": create a new list element
-            "thing is": create a new list element
-            "here's an image from wolfram alpha of": adds an image taken from
-    the Wolfram Alpha API to the current slide
-            "figure one": adds figure1.jpg from the local repository to the
-    current slide
-            "figure two":adds figure2.jpg from the local repository to the
-    current slide
-            "figure three":adds figure3.jpg from the local repository to the
-    current slide
     """
     global current
     if not strqueue.empty():
