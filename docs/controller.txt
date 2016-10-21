@@ -1,0 +1,9 @@
+:mod:`controller`
+=============
+
+.. automodule:: controller
+   :members:
+   :undoc-members:
+   :special-members:
+   :inherited-members:
+   :show-inheritance:
